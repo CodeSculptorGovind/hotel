@@ -1,0 +1,76 @@
+
+/* Custom styles for Mall Road House */
+
+.menu-filter {
+    margin-bottom: 2rem;
+}
+
+.filter-btn {
+    margin: 0 5px;
+    border-radius: 25px;
+    padding: 8px 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+    background-color: #e52b34;
+    border-color: #e52b34;
+    color: #fff;
+}
+
+.menu-item {
+    transition: all 0.3s ease;
+}
+
+.menu-item.hidden {
+    display: none;
+}
+
+/* Restaurant Menu Items */
+.menu-item[data-category="restaurant"] .heading-menu h3::after {
+    content: " 🍽️";
+}
+
+/* Bar Menu Items */
+.menu-item[data-category="bar"] .heading-menu h3::after {
+    content: " 🍸";
+}
+
+/* Order Now Button Styles */
+.order-btn {
+    background: linear-gradient(45deg, #e52b34, #ff6b6b);
+    border: none;
+    border-radius: 25px;
+    padding: 12px 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(229, 43, 52, 0.3);
+}
+
+.order-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(229, 43, 52, 0.4);
+}
+
+/* Reservation specific styles */
+.reservation-alert {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 20px 0;
+    color: #856404;
+}
+
+/* Contact info updates */
+.contact-hours {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
