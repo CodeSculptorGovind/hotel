@@ -1,13 +1,12 @@
-
 // Custom JavaScript for Mall Road House
 
 document.addEventListener('DOMContentLoaded', function() {
     // Enhanced Table Reservation Form
     const reservationForms = document.querySelectorAll('.appointment-form');
-    
+
     reservationForms.forEach(form => {
         // Remove service type selection - only dine-in reservations
-        
+
         // Add special requests field
         const submitButton = form.querySelector('input[type="submit"]');
         if (submitButton && !form.querySelector('.special-requests')) {
@@ -20,10 +19,10 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             submitButton.closest('.col-md-12').insertAdjacentElement('beforebegin', specialRequestsDiv);
         }
-        
+
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             // Get form data
             const formData = new FormData(this);
             const name = this.querySelector('input[placeholder="Name"]').value;
@@ -47,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     request_type: serviceType,
                     special_requests: specialRequests
                 };
-                
+
                 fetch('api/reservations.php', {
                     method: 'POST',
                     headers: {
@@ -59,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(data => {
                     if (data.success) {
                         alert(`Thank you ${name}! Your ${serviceType.replace('_', ' ')} request has been submitted successfully.\n\nYour reservation ID is: ${data.encoded_id}\n\nPlease save this ID to check your reservation status. You will receive a confirmation email once your request is reviewed.`);
-                        
+
                         // Show status checker info
                         const statusInfo = document.createElement('div');
                         statusInfo.className = 'alert alert-info mt-3';
@@ -68,10 +67,10 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p>Visit <a href="reservation-status.html" target="_blank">Reservation Status</a> and enter your ID: <strong>${data.encoded_id}</strong></p>
                         `;
                         this.insertAdjacentElement('afterend', statusInfo);
-                        
+
                         // Reset form
                         this.reset();
-                        
+
                         // Remove status info after 10 seconds
                         setTimeout(() => {
                             statusInfo.remove();
@@ -89,9 +88,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     // Reservation form is now only for dine-in
-    
+
     // Menu Filter Functionality
     const filterButtons = document.querySelectorAll('.filter-btn');
     const menuItems = document.querySelectorAll('.menu-wrap');
@@ -156,7 +155,7 @@ function loadMenuItems(category = 'all') {
     if (!menuContainer) return;
 
     let itemsToShow = [];
-    
+
     if (category === 'all') {
         Object.keys(menuData).forEach(cat => {
             itemsToShow = [...itemsToShow, ...menuData[cat].map(item => ({...item, category: cat}))];
@@ -188,14 +187,14 @@ function loadMenuItems(category = 'all') {
 document.addEventListener('DOMContentLoaded', function() {
     // Load menu items if on menu page
     loadMenuItems();
-    
+
     // Filter button functionality
     document.addEventListener('click', function(e) {
         if (e.target.classList.contains('filter-btn')) {
             // Update active button
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             e.target.classList.add('active');
-            
+
             // Filter items
             const filter = e.target.getAttribute('data-filter');
             loadMenuItems(filter);
@@ -216,3 +215,145 @@ function handleOrder(button) {
 function handleTakeaway(button) {
     // This function is no longer needed
 }
+
+// Status form setup
+function setupStatusForm() {
+    const form = document.getElementById('statusForm');
+    if (!form) return;
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const encodedId = document.getElementById('encodedId').value;
+
+        if (!encodedId) {
+            alert('Please enter your reservation ID');
+            return;
+        }
+
+        checkReservationStatus(encodedId);
+    });
+}
+
+// Quick reservation form setup for home page
+function setupQuickReservationForm() {
+    const form = document.getElementById('quickReservationForm');
+    if (!form) return;
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = {
+            name: document.getElementById('quickName').value,
+            email: document.getElementById('quickEmail').value,
+            phone: document.getElementById('quickPhone').value,
+            date: document.getElementById('quickDate').value,
+            time: document.getElementById('quickTime').value,
+            guests: document.getElementById('quickGuests').value,
+            request_type: 'dine_in'
+        };
+
+        // Validate form
+        if (!formData.name || !formData.email || !formData.phone || !formData.date || !formData.time || !formData.guests) {
+            alert('Please fill in all fields');
+            return;
+        }
+
+        // Submit reservation
+        submitReservation(formData, form);
+    });
+}
+
+// Load menu preview for home page
+function loadMenuPreview() {
+    fetch('api/menu.php')
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            displayMenuPreview(data.menu);
+        }
+    })
+    .catch(error => {
+        console.error('Error loading menu preview:', error);
+    });
+}
+
+// Display menu preview
+function displayMenuPreview(menuItems) {
+    const container = document.getElementById('menuPreview');
+    if (!container) return;
+
+    // Group items by category and show max 3 items per category
+    const categories = ['breakfast', 'lunch', 'dinner', 'desserts', 'wine', 'drinks'];
+    let html = '';
+
+    categories.forEach(category => {
+        const categoryItems = menuItems.filter(item => item.category === category && item.is_available).slice(0, 3);
+
+        if (categoryItems.length > 0) {
+            html += `
+                <div class="col-md-6 col-lg-4">
+                    <div class="menu-wrap">
+                        <div class="heading-menu text-center ftco-animate">
+                            <h3>${category.charAt(0).toUpperCase() + category.slice(1)}</h3>
+                        </div>
+            `;
+
+            categoryItems.forEach((item, index) => {
+                const borderClass = index === categoryItems.length - 1 ? 'border-bottom-0' : '';
+                html += `
+                    <div class="menus ${borderClass} d-flex ftco-animate">
+                        <div class="menu-img img" style="background-image: url(${item.image_url || 'images/menu-1.jpg'});"></div>
+                        <div class="text">
+                            <div class="d-flex">
+                                <div class="one-half">
+                                    <h3>${item.name}</h3>
+                                </div>
+                                <div class="one-forth">
+                                    <span class="price">₹${item.price}</span>
+                                </div>
+                            </div>
+                            <p>${item.description || 'Delicious and freshly prepared'}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `
+                        <span class="flat flaticon-bread" style="left: 0;"></span>
+                        <span class="flat flaticon-breakfast" style="right: 0;"></span>
+                    </div>
+                </div>
+            `;
+        }
+    });
+
+    container.innerHTML = html;
+}
+
+// Load menu items on page load
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('menuContainer')) {
+        loadMenuItems();
+    }
+
+    if (document.getElementById('reservationForm')) {
+        setupReservationForm();
+    }
+
+    if (document.getElementById('takeawayForm')) {
+        setupTakeawayForm();
+    }
+
+    if (document.getElementById('statusForm')) {
+        setupStatusForm();
+    }
+
+    if (document.getElementById('quickReservationForm')) {
+        setupQuickReservationForm();
+    }
+
+    if (document.getElementById('menuPreview')) {
+        loadMenuPreview();
+    }
+});
