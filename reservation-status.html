@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Reservation Status - Mall Road House</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .status-card {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .status-pending { border-left: 5px solid #ffc107; }
+        .status-approved { border-left: 5px solid #28a745; }
+        .status-declined { border-left: 5px solid #dc3545; }
+        .status-rescheduled { border-left: 5px solid #17a2b8; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Mall Road <span>House</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="chef.html" class="nav-link">Chef</a></li>
+                    <li class="nav-item"><a href="menu.html" class="nav-link">Menu</a></li>
+                    <li class="nav-item"><a href="reservation.html" class="nav-link">Reservation</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_5.jpg');">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-end justify-content-center">
+                <div class="col-md-9 ftco-animate text-center mb-5">
+                    <h1 class="mb-2 bread">Reservation Status</h1>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="fa fa-chevron-right"></i></a></span> <span>Status <i class="fa fa-chevron-right"></i></span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <h3>Check Your Reservation Status</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="statusForm">
+                                <div class="form-group">
+                                    <label for="encoded_id">Enter your Reservation ID:</label>
+                                    <input type="text" class="form-control" id="encoded_id" placeholder="e.g., MRH_abc123def456" required>
+                                    <small class="form-text text-muted">This ID was provided when you made your reservation.</small>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">Check Status</button>
+                            </form>
+                            
+                            <div id="statusResult" style="display: none;" class="mt-4">
+                                <!-- Status will be displayed here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('statusForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const encodedId = document.getElementById('encoded_id').value;
+            const resultDiv = document.getElementById('statusResult');
+            
+            fetch(`api/reservations.php?encoded_id=${encodedId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if(data.error) {
+                        resultDiv.innerHTML = `
+                            <div class="alert alert-danger">
+                                <i class="fa fa-exclamation-triangle"></i> Reservation not found. Please check your ID and try again.
+                            </div>
+                        `;
+                    } else {
+                        const statusClass = `status-${data.status}`;
+                        let statusMessage = '';
+                        
+                        switch(data.status) {
+                            case 'pending':
+                                statusMessage = 'Your reservation is pending review. We will contact you within 24 hours.';
+                                break;
+                            case 'approved':
+                                statusMessage = 'Your reservation has been approved! We look forward to serving you.';
+                                break;
+                            case 'declined':
+                                statusMessage = 'Unfortunately, your reservation could not be accommodated. Please try a different date.';
+                                break;
+                            case 'rescheduled':
+                                statusMessage = 'Your reservation has been rescheduled. Please check the new date and time below.';
+                                break;
+                        }
+                        
+                        resultDiv.innerHTML = `
+                            <div class="status-card ${statusClass}">
+                                <h4>Reservation Details</h4>
+                                <p><strong>Name:</strong> ${data.name}</p>
+                                <p><strong>Date:</strong> ${data.date}</p>
+                                <p><strong>Time:</strong> ${data.time}</p>
+                                <p><strong>Guests:</strong> ${data.guests}</p>
+                                <p><strong>Type:</strong> ${data.request_type}</p>
+                                <p><strong>Status:</strong> <span class="text-capitalize">${data.status}</span></p>
+                                <hr>
+                                <p><i class="fa fa-info-circle"></i> ${statusMessage}</p>
+                                ${data.special_requests ? `<p><strong>Special Requests:</strong> ${data.special_requests}</p>` : ''}
+                            </div>
+                        `;
+                    }
+                    
+                    resultDiv.style.display = 'block';
+                })
+                .catch(error => {
+                    resultDiv.innerHTML = `
+                        <div class="alert alert-danger">
+                            <i class="fa fa-exclamation-triangle"></i> An error occurred. Please try again later.
+                        </div>
+                    `;
+                    resultDiv.style.display = 'block';
+                });
+        });
+    </script>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
