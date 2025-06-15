@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,3 +69,6 @@
 		</div>
 	</nav>
 	<!-- END nav -->
+
+</body>
+</html>
