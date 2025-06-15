@@ -74,3 +74,128 @@
     border-radius: 5px;
     margin-top: 10px;
 }
+
+/* Menu card styles */
+.menu-item .card {
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 10px;
+}
+
+.menu-item .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
+}
+
+.menu-item .card-img-top {
+    border-radius: 10px 10px 0 0;
+    transition: all 0.3s ease;
+}
+
+.menu-item .card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+.menu-item .card-body {
+    padding: 1.5rem;
+}
+
+.menu-item .card-title {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.menu-item .card-text {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.menu-item .btn-primary {
+    background: linear-gradient(45deg, #e52b34, #ff6b6b);
+    border: none;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.menu-item .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(229, 43, 52, 0.3);
+}
+
+/* Filter buttons */
+.filter-btn {
+    border-radius: 25px;
+    padding: 10px 20px;
+    margin: 5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+    background: #e52b34;
+    border-color: #e52b34;
+    color: white;
+}
+
+.filter-btn:hover {
+    background: #e52b34;
+    border-color: #e52b34;
+    color: white;
+}
+
+/* About page improvements */
+.about-content h4 {
+    color: #e52b34;
+    margin-bottom: 1rem;
+}
+
+.about-content ul li {
+    padding: 0.5rem 0;
+    color: #666;
+}
+
+.about-content ul li i {
+    margin-right: 0.5rem;
+    width: 20px;
+}
+
+/* Reservation form improvements */
+.appointment-form {
+    width: 100%;
+}
+
+.appointment-form .form-group label {
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.appointment-form .form-control {
+    border-radius: 5px;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.1);
+    color: white;
+    padding: 12px 15px;
+}
+
+.appointment-form .form-control::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+.appointment-form .form-control:focus {
+    border-color: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.2);
+    color: white;
+    box-shadow: none;
+}
+
+.appointment-form textarea.form-control {
+    resize: vertical;
+    min-height: 100px;
+}

@@ -6,29 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const reservationForms = document.querySelectorAll('.appointment-form');
     
     reservationForms.forEach(form => {
-        // Add service type selection
-        const firstRow = form.querySelector('.row');
-        if (firstRow && !form.querySelector('.service-type-row')) {
-            const serviceTypeRow = document.createElement('div');
-            serviceTypeRow.className = 'row service-type-row';
-            serviceTypeRow.innerHTML = `
-                <div class="col-md-12 mb-3">
-                    <label class="form-label text-white mb-2">Service Type:</label>
-                    <div class="btn-group w-100" role="group">
-                        <input type="radio" class="btn-check" name="service_type" id="dine_in" value="dine_in" checked>
-                        <label class="btn btn-outline-light" for="dine_in">
-                            <i class="fa fa-cutlery"></i> Dine In
-                        </label>
-                        
-                        <input type="radio" class="btn-check" name="service_type" id="takeaway" value="takeaway">
-                        <label class="btn btn-outline-light" for="takeaway">
-                            <i class="fa fa-shopping-bag"></i> Takeaway
-                        </label>
-                    </div>
-                </div>
-            `;
-            firstRow.insertAdjacentElement('beforebegin', serviceTypeRow);
-        }
+        // Remove service type selection - only dine-in reservations
         
         // Add special requests field
         const submitButton = form.querySelector('input[type="submit"]');
@@ -54,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const date = this.querySelector('.book_date').value;
             const time = this.querySelector('.book_time').value;
             const guests = this.querySelector('select').value;
-            const serviceType = this.querySelector('input[name="service_type"]:checked').value;
+            const serviceType = 'dine_in'; // Only dine-in reservations
             const specialRequests = this.querySelector('textarea[name="special_requests"]').value;
 
             if (name && email && phone && date && time && guests) {
@@ -112,38 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Update service type behavior
-    document.addEventListener('change', function(e) {
-        if (e.target.name === 'service_type') {
-            const form = e.target.closest('form');
-            const guestSelect = form.querySelector('select');
-            const timeField = form.querySelector('.book_time');
-            
-            if (e.target.value === 'takeaway') {
-                // For takeaway, guests field becomes quantity
-                guestSelect.innerHTML = `
-                    <option value="">Quantity</option>
-                    <option value="1">1 order</option>
-                    <option value="2">2 orders</option>
-                    <option value="3">3 orders</option>
-                    <option value="4">4 orders</option>
-                    <option value="5">5+ orders</option>
-                `;
-                timeField.placeholder = "Pickup Time";
-            } else {
-                // For dine-in, restore guests
-                guestSelect.innerHTML = `
-                    <option value="">Guest</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5+</option>
-                `;
-                timeField.placeholder = "Time";
-            }
-        }
-    });
+    // Reservation form is now only for dine-in
     
     // Menu Filter Functionality
     const filterButtons = document.querySelectorAll('.filter-btn');
@@ -167,17 +114,105 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Order functionality placeholder
-function handleOrder(button) {
-    const menuItem = button.closest('.menu-wrap');
-    const menuType = menuItem.querySelector('.heading-menu h3').textContent;
+// Sample menu data
+const menuData = {
+    breakfast: [
+        { name: "Classic Pancakes", description: "Fluffy pancakes with maple syrup and butter", price: 12.99, image: "images/breakfast-1.jpg" },
+        { name: "English Breakfast", description: "Eggs, bacon, sausages, beans, and toast", price: 15.99, image: "images/breakfast-2.jpg" },
+        { name: "Avocado Toast", description: "Sourdough toast with avocado, cherry tomatoes", price: 11.99, image: "images/breakfast-3.jpg" },
+        { name: "Breakfast Burrito", description: "Scrambled eggs, cheese, peppers in tortilla", price: 13.99, image: "images/breakfast-4.jpg" }
+    ],
+    lunch: [
+        { name: "Grilled Chicken Salad", description: "Mixed greens, grilled chicken, vegetables", price: 16.99, image: "images/lunch-1.jpg" },
+        { name: "Beef Burger", description: "Juicy beef patty with cheese and fries", price: 18.99, image: "images/lunch-2.jpg" },
+        { name: "Caesar Salad", description: "Romaine lettuce, parmesan, croutons", price: 14.99, image: "images/lunch-3.jpg" },
+        { name: "Fish & Chips", description: "Beer battered cod with chunky chips", price: 19.99, image: "images/lunch-4.jpg" }
+    ],
+    dinner: [
+        { name: "Grilled Salmon", description: "Atlantic salmon with seasonal vegetables", price: 26.99, image: "images/dinner-1.jpg" },
+        { name: "Ribeye Steak", description: "Prime ribeye with mashed potatoes", price: 32.99, image: "images/dinner-2.jpg" },
+        { name: "Pasta Carbonara", description: "Creamy pasta with bacon and parmesan", price: 22.99, image: "images/dinner-3.jpg" },
+        { name: "Lamb Chops", description: "Herb-crusted lamb with mint sauce", price: 28.99, image: "images/dinner-4.jpg" }
+    ],
+    desserts: [
+        { name: "Chocolate Cake", description: "Rich chocolate layer cake with berries", price: 8.99, image: "images/dessert-1.jpg" },
+        { name: "Tiramisu", description: "Classic Italian coffee-flavored dessert", price: 9.99, image: "images/dessert-2.jpg" },
+        { name: "Ice Cream Sundae", description: "Vanilla ice cream with chocolate sauce", price: 7.99, image: "images/dessert-3.jpg" },
+        { name: "Cheesecake", description: "New York style cheesecake with fruit", price: 8.99, image: "images/dessert-4.jpg" }
+    ],
+    liquor: [
+        { name: "Premium Whiskey", description: "Single malt Scotch whiskey, aged 12 years", price: 18.99, image: "images/wine-1.jpg" },
+        { name: "Red Wine", description: "Cabernet Sauvignon, full-bodied", price: 12.99, image: "images/wine-2.jpg" },
+        { name: "Craft Beer", description: "Local IPA with citrus notes", price: 6.99, image: "images/drink-1.jpg" },
+        { name: "Signature Cocktail", description: "House special mojito with fresh mint", price: 9.99, image: "images/drink-2.jpg" },
+        { name: "White Wine", description: "Chardonnay, crisp and refreshing", price: 11.99, image: "images/wine-3.jpg" },
+        { name: "Premium Vodka", description: "Top-shelf vodka, smooth finish", price: 15.99, image: "images/wine-4.jpg" }
+    ]
+};
+
+// Load menu items
+function loadMenuItems(category = 'all') {
+    const menuContainer = document.getElementById('menu-items');
+    if (!menuContainer) return;
+
+    let itemsToShow = [];
     
-    alert(`Order functionality for ${menuType} will be implemented soon! This will include:\n\n• Delivery to specific zip codes\n• Order tracking\n• Payment integration\n• Admin panel for order management`);
+    if (category === 'all') {
+        Object.keys(menuData).forEach(cat => {
+            itemsToShow = [...itemsToShow, ...menuData[cat].map(item => ({...item, category: cat}))];
+        });
+    } else {
+        itemsToShow = menuData[category] ? menuData[category].map(item => ({...item, category})) : [];
+    }
+
+    menuContainer.innerHTML = itemsToShow.map(item => `
+        <div class="col-lg-4 col-md-6 mb-4 menu-item" data-category="${item.category}">
+            <div class="card h-100 shadow-sm">
+                <img src="${item.image}" class="card-img-top" alt="${item.name}" style="height: 200px; object-fit: cover;">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">${item.name}</h5>
+                    <p class="card-text flex-grow-1">${item.description}</p>
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <h6 class="text-primary mb-0">$${item.price}</h6>
+                        <button class="btn btn-primary btn-sm" onclick="addToOrder('${item.name}', ${item.price})">
+                            <i class="fa fa-shopping-cart"></i> Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Filter functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Load menu items if on menu page
+    loadMenuItems();
+    
+    // Filter button functionality
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('filter-btn')) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            e.target.classList.add('active');
+            
+            // Filter items
+            const filter = e.target.getAttribute('data-filter');
+            loadMenuItems(filter);
+        }
+    });
+});
+
+// Order functionality
+function addToOrder(itemName, price) {
+    alert(`${itemName} ($${price}) added to your order!\n\nTakeaway ordering system coming soon. Features will include:\n\n• Order customization\n• Pickup time selection\n• Payment processing\n• Order tracking\n• SMS notifications`);
+}
+
+// Remove old order functions
+function handleOrder(button) {
+    // This function is no longer needed
 }
 
 function handleTakeaway(button) {
-    const menuItem = button.closest('.menu-wrap');
-    const menuType = menuItem.querySelector('.heading-menu h3').textContent;
-    
-    alert(`Takeaway order for ${menuType} will be ready in 15-20 minutes. This feature will include:\n\n• Order preparation tracking\n• SMS notifications\n• Pickup time estimation`);
+    // This function is no longer needed
 }
