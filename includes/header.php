@@ -44,7 +44,9 @@
 	</div>
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light sticky-top" id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="index.php">Mall Road <span>House</span></a>
+			<a class="navbar-brand" href="index.php">
+				<img src="attached_assets/Mallroad House Logo_1749898516085.png" alt="Mall Road House" style="height: 40px; width: auto;">
+			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        	<span class="navbar-toggler-icon"></span>
 	      	</button>

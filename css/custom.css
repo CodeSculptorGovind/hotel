@@ -405,3 +405,16 @@
         padding-top: 2rem;
     }
 }
+
+/* Custom styles */
+.navbar-brand img {
+    height: 40px;
+    width: auto;
+    max-height: 50px;
+}
+
+@media (max-width: 991.98px) {
+    .navbar-brand img {
+        height: 35px;
+    }
+}
