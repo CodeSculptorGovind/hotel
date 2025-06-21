@@ -136,7 +136,8 @@ function displayMenuByCategory(menuItems) {
     
     categories.forEach(category => {
         const categoryItems = menuItems.filter(item => 
-            item.category === category && parseInt(item.is_available) === 1
+            item.category && item.category.toLowerCase() === category.toLowerCase() && 
+            (parseInt(item.is_available) === 1 || item.is_available === true || item.is_available === '1')
         );
         
         const container = document.getElementById(category + '-menu');

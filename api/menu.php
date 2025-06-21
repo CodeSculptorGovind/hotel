@@ -73,7 +73,7 @@ switch($method) {
 }
 
 function getAllMenuItems($db) {
-    $query = "SELECT * FROM menu_items ORDER BY category, name";
+    $query = "SELECT * FROM menu_items WHERE is_available = 1 ORDER BY category, name";
     $stmt = $db->prepare($query);
     $stmt->execute();
 
