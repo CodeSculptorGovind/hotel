@@ -17,6 +17,8 @@ switch($method) {
     case 'GET':
         if(isset($_GET['type']) && $_GET['type'] === 'combos') {
             getAllCombos($db);
+        } elseif(isset($_GET['type']) && $_GET['type'] === 'categories') {
+            getAllCategories($db);
         } else {
             getAllMenuItems($db);
         }
@@ -73,7 +75,11 @@ switch($method) {
 }
 
 function getAllMenuItems($db) {
-    $query = "SELECT * FROM menu_items WHERE is_available = 1 ORDER BY category, name";
+    $query = "SELECT m.*, c.name as category, c.display_name as category_display 
+              FROM menu_items m 
+              JOIN categories c ON m.category_id = c.id 
+              WHERE m.is_available = 1 AND c.is_active = 1 
+              ORDER BY c.sort_order, m.name";
     $stmt = $db->prepare($query);
     $stmt->execute();
 
@@ -82,12 +88,15 @@ function getAllMenuItems($db) {
 }
 
 function getAllCombos($db) {
-    $query = "SELECT c.*, GROUP_CONCAT(CONCAT(m.name, ' (', cir.quantity, ')') SEPARATOR ', ') as combo_items
+    $query = "SELECT c.*, cat.name as category, cat.display_name as category_display,
+              GROUP_CONCAT(CONCAT(m.name, ' (', cir.quantity, ')') SEPARATOR ', ') as combo_items
               FROM combo_items c
+              JOIN categories cat ON c.category_id = cat.id
               LEFT JOIN combo_item_relations cir ON c.id = cir.combo_id
               LEFT JOIN menu_items m ON cir.menu_item_id = m.id
+              WHERE c.is_available = 1 AND cat.is_active = 1
               GROUP BY c.id
-              ORDER BY c.category, c.name";
+              ORDER BY cat.sort_order, c.name";
     $stmt = $db->prepare($query);
     $stmt->execute();
 
@@ -95,15 +104,24 @@ function getAllCombos($db) {
     echo json_encode($combos);
 }
 
+function getAllCategories($db) {
+    $query = "SELECT * FROM categories WHERE is_active = 1 ORDER BY sort_order";
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+
+    $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($categories);
+}
+
 function createMenuItem($data, $db) {
-    $query = "INSERT INTO menu_items (name, description, price, category, image_url, is_available) 
-              VALUES (:name, :description, :price, :category, :image_url, :is_available)";
+    $query = "INSERT INTO menu_items (name, description, price, category_id, image_url, is_available) 
+              VALUES (:name, :description, :price, :category_id, :image_url, :is_available)";
 
     $stmt = $db->prepare($query);
     $stmt->bindParam(':name', $data['name']);
     $stmt->bindParam(':description', $data['description']);
     $stmt->bindParam(':price', $data['price']);
-    $stmt->bindParam(':category', $data['category']);
+    $stmt->bindParam(':category_id', $data['category_id']);
     $stmt->bindParam(':image_url', $data['image_url']);
     $stmt->bindParam(':is_available', $data['is_available']);
 
@@ -119,14 +137,14 @@ function createCombo($data, $db) {
         $db->beginTransaction();
 
         // Insert combo
-        $query = "INSERT INTO combo_items (name, description, price, category, image_url, is_available) 
-                  VALUES (:name, :description, :price, :category, :image_url, :is_available)";
+        $query = "INSERT INTO combo_items (name, description, price, category_id, image_url, is_available) 
+                  VALUES (:name, :description, :price, :category_id, :image_url, :is_available)";
 
         $stmt = $db->prepare($query);
         $stmt->bindParam(':name', $data['name']);
         $stmt->bindParam(':description', $data['description']);
         $stmt->bindParam(':price', $data['price']);
-        $stmt->bindParam(':category', $data['category']);
+        $stmt->bindParam(':category_id', $data['category_id']);
         $stmt->bindParam(':image_url', $data['image_url']);
         $stmt->bindParam(':is_available', $data['is_available']);
 
@@ -158,13 +176,13 @@ function createCombo($data, $db) {
 
 function updateMenuItem($id, $data, $db) {
     $query = "UPDATE menu_items SET name = :name, description = :description, price = :price, 
-              category = :category, image_url = :image_url, is_available = :is_available WHERE id = :id";
+              category_id = :category_id, image_url = :image_url, is_available = :is_available WHERE id = :id";
 
     $stmt = $db->prepare($query);
     $stmt->bindParam(':name', $data['name']);
     $stmt->bindParam(':description', $data['description']);
     $stmt->bindParam(':price', $data['price']);
-    $stmt->bindParam(':category', $data['category']);
+    $stmt->bindParam(':category_id', $data['category_id']);
     $stmt->bindParam(':image_url', $data['image_url']);
     $stmt->bindParam(':is_available', $data['is_available']);
     $stmt->bindParam(':id', $id);
@@ -182,13 +200,13 @@ function updateCombo($id, $data, $db) {
 
         // Update combo
         $query = "UPDATE combo_items SET name = :name, description = :description, price = :price, 
-                  category = :category, image_url = :image_url, is_available = :is_available WHERE id = :id";
+                  category_id = :category_id, image_url = :image_url, is_available = :is_available WHERE id = :id";
 
         $stmt = $db->prepare($query);
         $stmt->bindParam(':name', $data['name']);
         $stmt->bindParam(':description', $data['description']);
         $stmt->bindParam(':price', $data['price']);
-        $stmt->bindParam(':category', $data['category']);
+        $stmt->bindParam(':category_id', $data['category_id']);
         $stmt->bindParam(':image_url', $data['image_url']);
         $stmt->bindParam(':is_available', $data['is_available']);
         $stmt->bindParam(':id', $id);
