@@ -150,37 +150,75 @@ const menuData = {
 };
 
 // Load menu items
-function loadMenuItems(category = 'all') {
-    const menuContainer = document.getElementById('menu-items');
+function loadMenuItems(filter = 'all') {
+    const menuContainer = document.getElementById('menuPreview');
     if (!menuContainer) return;
 
-    let itemsToShow = [];
-
-    if (category === 'all') {
-        Object.keys(menuData).forEach(cat => {
-            itemsToShow = [...itemsToShow, ...menuData[cat].map(item => ({...item, category: cat}))];
+    // Fetch menu items from API
+    fetch('api/menu.php')
+        .then(response => response.json())
+        .then(data => {
+            displayMenuItems(data, filter);
+        })
+        .catch(error => {
+            console.error('Error loading menu:', error);
+            // Show fallback message
+            menuContainer.innerHTML = '<div class="col-12 text-center"><p>Unable to load menu items. Please try again later.</p></div>';
         });
-    } else {
-        itemsToShow = menuData[category] ? menuData[category].map(item => ({...item, category})) : [];
+}
+
+function displayMenuItems(items, filter = 'all') {
+    const menuContainer = document.getElementById('menuPreview');
+    if (!menuContainer) return;
+
+    let filteredItems = items;
+    if (filter !== 'all') {
+        filteredItems = items.filter(item => item.category === filter);
     }
 
-    menuContainer.innerHTML = itemsToShow.map(item => `
-        <div class="col-lg-4 col-md-6 mb-4 menu-item" data-category="${item.category}">
-            <div class="card h-100 shadow-sm">
-                <img src="${item.image}" class="card-img-top" alt="${item.name}" style="height: 200px; object-fit: cover;">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">${item.name}</h5>
-                    <p class="card-text flex-grow-1">${item.description}</p>
-                    <div class="d-flex justify-content-between align-items-center mt-3">
-                        <h6 class="text-primary mb-0">$${item.price}</h6>
-                        <button class="btn btn-primary btn-sm" onclick="addToOrder('${item.name}', ${item.price})">
-                            <i class="fa fa-shopping-cart"></i> Order
-                        </button>
+    if (filteredItems.length === 0) {
+        menuContainer.innerHTML = '<div class="col-12 text-center"><p>No menu items found.</p></div>';
+        return;
+    }
+
+    const menuHTML = filteredItems.slice(0, 6).map(item => `
+        <div class="col-md-6 col-lg-4 menu-item" data-category="${item.category}">
+            <div class="menu-wrap">
+                <div class="heading-menu text-center ftco-animate">
+                    <h3>${item.name}</h3>
+                </div>
+                <div class="menus d-flex ftco-animate">
+                    <div class="menu-img img" style="background-image: url(${item.image_url || 'images/menu-1.jpg'});"></div>
+                    <div class="text">
+                        <div class="d-flex">
+                            <div class="one-half">
+                                <h3>${item.name}</h3>
+                            </div>
+                            <div class="one-forth">
+                                <span class="price">$${parseFloat(item.price).toFixed(2)}</span>
+                            </div>
+                        </div>
+                        <p>${item.description || 'Delicious menu item'}</p>
                     </div>
                 </div>
             </div>
         </div>
     `).join('');
+
+    menuContainer.innerHTML = menuHTML;
+}
+
+// Load combo items
+function loadComboItems() {
+    fetch('api/menu.php?type=combos')
+        .then(response => response.json())
+        .then(data => {
+            // Display combos if needed
+            console.log('Combos loaded:', data);
+        })
+        .catch(error => {
+            console.error('Error loading combos:', error);
+        });
 }
 
 // Filter functionality

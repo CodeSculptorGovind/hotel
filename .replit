@@ -2,3 +2,15 @@ modules = ["web", "nodejs-20"]
 
 [nix]
 channel = "stable-24_05"
+
+[workflows]
+runButton = "Run Web Server"
+
+[[workflows.workflow]]
+name = "Run Web Server"
+author = 43866906
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "php -S 0.0.0.0:5000"
