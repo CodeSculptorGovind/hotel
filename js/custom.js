@@ -331,6 +331,48 @@ function displayMenuPreview(menuItems) {
     container.innerHTML = html;
 }
 
+// Mobile menu toggle
+document.addEventListener('DOMContentLoaded', function() {
+    // Close mobile menu when clicking on a link
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+
+    navLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+            if (navbarCollapse.classList.contains('show')) {
+                document.querySelector('.navbar-toggler').click();
+            }
+        });
+    });
+
+    // Touch/swipe improvements for mobile
+    if ('ontouchstart' in window) {
+        document.body.classList.add('touch-device');
+    }
+
+    // Prevent iOS zoom on form inputs
+    if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+        const viewportMeta = document.querySelector('meta[name="viewport"]');
+        if (viewportMeta) {
+            viewportMeta.content = 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no';
+        }
+    }
+
+    // Smooth scroll for anchor links on mobile
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+});
+
 // Load menu items on page load
 document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('menuContainer')) {

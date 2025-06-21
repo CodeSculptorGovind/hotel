@@ -1,4 +1,3 @@
-
 <?php include 'includes/header.php'; ?>
 
 <section class="hero-wrap">
@@ -201,7 +200,7 @@
 			</div>
 		</div>	
 		<div class="row">
-			<div class="col-md-6 col-lg-3 ftco-animate">
+			<div class="col-12 col-sm-6 col-lg-3 ftco-animate">
 				<div class="staff">
 					<div class="img" style="background-image: url(images/chef-4.jpg);"></div>
 					<div class="text px-4 pt-2">
@@ -219,7 +218,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6 col-lg-3 ftco-animate">
+			<div class="col-12 col-sm-6 col-lg-3 ftco-animate">
 				<div class="staff">
 					<div class="img" style="background-image: url(images/chef-2.jpg);"></div>
 					<div class="text px-4 pt-2">
@@ -237,7 +236,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6 col-lg-3 ftco-animate">
+			<div class="col-12 col-sm-6 col-lg-3 ftco-animate">
 				<div class="staff">
 					<div class="img" style="background-image: url(images/chef-3.jpg);"></div>
 					<div class="text px-4 pt-2">
@@ -255,7 +254,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6 col-lg-3 ftco-animate">
+			<div class="col-12 col-sm-6 col-lg-3 ftco-animate">
 				<div class="staff">
 					<div class="img" style="background-image: url(images/chef-1.jpg);"></div>
 					<div class="text px-4 pt-2">
@@ -305,7 +304,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-4 ftco-animate">
+			<div class="col-12 col-md-6 col-lg-4 ftco-animate">
 				<div class="blog-entry">
 					<a href="blog-single.php" class="block-20" style="background-image: url('images/image_1.jpg');">
 					</a>
@@ -322,7 +321,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4 ftco-animate">
+			<div class="col-12 col-md-6 col-lg-4 ftco-animate">
 				<div class="blog-entry">
 					<a href="blog-single.php" class="block-20" style="background-image: url('images/image_2.jpg');">
 					</a>
@@ -339,7 +338,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4 ftco-animate">
+			<div class="col-12 col-md-6 col-lg-4 ftco-animate">
 				<div class="blog-entry">
 					<a href="blog-single.php" class="block-20" style="background-image: url('images/image_3.jpg');">
 					</a>
