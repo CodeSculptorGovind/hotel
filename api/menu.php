@@ -1,5 +1,5 @@
-
 <?php
+session_start();
 header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
@@ -21,16 +21,30 @@ switch($method) {
             getAllMenuItems($db);
         }
         break;
-    
+
     case 'POST':
+        // Check admin authentication for adding items
+        if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+            http_response_code(401);
+            echo json_encode(['error' => 'Unauthorized']);
+            exit();
+        }
+
         if(isset($_GET['type']) && $_GET['type'] === 'combo') {
             createCombo($request, $db);
         } else {
             createMenuItem($request, $db);
         }
         break;
-    
+
     case 'PUT':
+        // Check admin authentication for updating items
+        if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+            http_response_code(401);
+            echo json_encode(['error' => 'Unauthorized']);
+            exit();
+        }
+
         if(isset($_GET['id'])) {
             if(isset($_GET['type']) && $_GET['type'] === 'combo') {
                 updateCombo($_GET['id'], $request, $db);
@@ -39,8 +53,15 @@ switch($method) {
             }
         }
         break;
-    
+
     case 'DELETE':
+        // Check admin authentication for deleting items
+        if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+            http_response_code(401);
+            echo json_encode(['error' => 'Unauthorized']);
+            exit();
+        }
+
         if(isset($_GET['id'])) {
             if(isset($_GET['type']) && $_GET['type'] === 'combo') {
                 deleteCombo($_GET['id'], $db);
@@ -55,7 +76,7 @@ function getAllMenuItems($db) {
     $query = "SELECT * FROM menu_items ORDER BY category, name";
     $stmt = $db->prepare($query);
     $stmt->execute();
-    
+
     $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($items);
 }
@@ -69,7 +90,7 @@ function getAllCombos($db) {
               ORDER BY c.category, c.name";
     $stmt = $db->prepare($query);
     $stmt->execute();
-    
+
     $combos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($combos);
 }
@@ -77,7 +98,7 @@ function getAllCombos($db) {
 function createMenuItem($data, $db) {
     $query = "INSERT INTO menu_items (name, description, price, category, image_url, is_available) 
               VALUES (:name, :description, :price, :category, :image_url, :is_available)";
-    
+
     $stmt = $db->prepare($query);
     $stmt->bindParam(':name', $data['name']);
     $stmt->bindParam(':description', $data['description']);
@@ -85,7 +106,7 @@ function createMenuItem($data, $db) {
     $stmt->bindParam(':category', $data['category']);
     $stmt->bindParam(':image_url', $data['image_url']);
     $stmt->bindParam(':is_available', $data['is_available']);
-    
+
     if($stmt->execute()) {
         echo json_encode(['success' => true, 'message' => 'Menu item created successfully']);
     } else {
@@ -96,11 +117,11 @@ function createMenuItem($data, $db) {
 function createCombo($data, $db) {
     try {
         $db->beginTransaction();
-        
+
         // Insert combo
         $query = "INSERT INTO combo_items (name, description, price, category, image_url, is_available) 
                   VALUES (:name, :description, :price, :category, :image_url, :is_available)";
-        
+
         $stmt = $db->prepare($query);
         $stmt->bindParam(':name', $data['name']);
         $stmt->bindParam(':description', $data['description']);
@@ -108,16 +129,16 @@ function createCombo($data, $db) {
         $stmt->bindParam(':category', $data['category']);
         $stmt->bindParam(':image_url', $data['image_url']);
         $stmt->bindParam(':is_available', $data['is_available']);
-        
+
         $stmt->execute();
         $combo_id = $db->lastInsertId();
-        
+
         // Insert combo items
         if(isset($data['combo_items']) && is_array($data['combo_items'])) {
             $query = "INSERT INTO combo_item_relations (combo_id, menu_item_id, quantity, is_optional) 
                       VALUES (:combo_id, :menu_item_id, :quantity, :is_optional)";
             $stmt = $db->prepare($query);
-            
+
             foreach($data['combo_items'] as $item) {
                 $stmt->bindParam(':combo_id', $combo_id);
                 $stmt->bindParam(':menu_item_id', $item['menu_item_id']);
@@ -126,7 +147,7 @@ function createCombo($data, $db) {
                 $stmt->execute();
             }
         }
-        
+
         $db->commit();
         echo json_encode(['success' => true, 'message' => 'Combo created successfully']);
     } catch(Exception $e) {
@@ -138,7 +159,7 @@ function createCombo($data, $db) {
 function updateMenuItem($id, $data, $db) {
     $query = "UPDATE menu_items SET name = :name, description = :description, price = :price, 
               category = :category, image_url = :image_url, is_available = :is_available WHERE id = :id";
-    
+
     $stmt = $db->prepare($query);
     $stmt->bindParam(':name', $data['name']);
     $stmt->bindParam(':description', $data['description']);
@@ -147,7 +168,7 @@ function updateMenuItem($id, $data, $db) {
     $stmt->bindParam(':image_url', $data['image_url']);
     $stmt->bindParam(':is_available', $data['is_available']);
     $stmt->bindParam(':id', $id);
-    
+
     if($stmt->execute()) {
         echo json_encode(['success' => true, 'message' => 'Menu item updated successfully']);
     } else {
@@ -158,11 +179,11 @@ function updateMenuItem($id, $data, $db) {
 function updateCombo($id, $data, $db) {
     try {
         $db->beginTransaction();
-        
+
         // Update combo
         $query = "UPDATE combo_items SET name = :name, description = :description, price = :price, 
                   category = :category, image_url = :image_url, is_available = :is_available WHERE id = :id";
-        
+
         $stmt = $db->prepare($query);
         $stmt->bindParam(':name', $data['name']);
         $stmt->bindParam(':description', $data['description']);
@@ -172,19 +193,19 @@ function updateCombo($id, $data, $db) {
         $stmt->bindParam(':is_available', $data['is_available']);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
-        
+
         // Delete existing combo items
         $query = "DELETE FROM combo_item_relations WHERE combo_id = :combo_id";
         $stmt = $db->prepare($query);
         $stmt->bindParam(':combo_id', $id);
         $stmt->execute();
-        
+
         // Insert updated combo items
         if(isset($data['combo_items']) && is_array($data['combo_items'])) {
             $query = "INSERT INTO combo_item_relations (combo_id, menu_item_id, quantity, is_optional) 
                       VALUES (:combo_id, :menu_item_id, :quantity, :is_optional)";
             $stmt = $db->prepare($query);
-            
+
             foreach($data['combo_items'] as $item) {
                 $stmt->bindParam(':combo_id', $id);
                 $stmt->bindParam(':menu_item_id', $item['menu_item_id']);
@@ -193,7 +214,7 @@ function updateCombo($id, $data, $db) {
                 $stmt->execute();
             }
         }
-        
+
         $db->commit();
         echo json_encode(['success' => true, 'message' => 'Combo updated successfully']);
     } catch(Exception $e) {
@@ -206,7 +227,7 @@ function deleteMenuItem($id, $db) {
     $query = "DELETE FROM menu_items WHERE id = :id";
     $stmt = $db->prepare($query);
     $stmt->bindParam(':id', $id);
-    
+
     if($stmt->execute()) {
         echo json_encode(['success' => true, 'message' => 'Menu item deleted successfully']);
     } else {
@@ -218,7 +239,7 @@ function deleteCombo($id, $db) {
     $query = "DELETE FROM combo_items WHERE id = :id";
     $stmt = $db->prepare($query);
     $stmt->bindParam(':id', $id);
-    
+
     if($stmt->execute()) {
         echo json_encode(['success' => true, 'message' => 'Combo deleted successfully']);
     } else {
