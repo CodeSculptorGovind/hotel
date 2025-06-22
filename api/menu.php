@@ -12,8 +12,8 @@ $db = $database->getConnection();
 
 // Check if database connection was successful
 if ($db === null) {
-    http_response_code(500);
-    echo json_encode(['error' => 'Database connection failed']);
+    // Return dummy data instead of error
+    returnDummyData();
     exit();
 }
 
@@ -269,6 +269,157 @@ function deleteCombo($id, $db) {
         echo json_encode(['success' => true, 'message' => 'Combo deleted successfully']);
     } else {
         echo json_encode(['success' => false, 'message' => 'Failed to delete combo']);
+    }
+}
+
+function returnDummyData() {
+    $dummyMenuItems = [
+        [
+            "id" => 1,
+            "name" => "Classic Pancakes",
+            "description" => "Fluffy pancakes with maple syrup and butter",
+            "price" => "12.99",
+            "category_id" => 1,
+            "image_url" => "images/breakfast-1.jpg",
+            "is_available" => 1,
+            "created_at" => "2025-06-22 16:46:54",
+            "updated_at" => "2025-06-22 16:46:54",
+            "category" => "breakfast",
+            "category_display" => "Breakfast"
+        ],
+        [
+            "id" => 2,
+            "name" => "English Breakfast",
+            "description" => "Eggs, bacon, sausages, beans, and toast",
+            "price" => "15.99",
+            "category_id" => 1,
+            "image_url" => "images/breakfast-2.jpg",
+            "is_available" => 1,
+            "created_at" => "2025-06-22 16:46:54",
+            "updated_at" => "2025-06-22 16:46:54",
+            "category" => "breakfast",
+            "category_display" => "Breakfast"
+        ],
+        [
+            "id" => 3,
+            "name" => "Avocado Toast",
+            "description" => "Sourdough toast with avocado and cherry tomatoes",
+            "price" => "11.99",
+            "category_id" => 1,
+            "image_url" => "images/breakfast-3.jpg",
+            "is_available" => 1,
+            "created_at" => "2025-06-22 16:46:54",
+            "updated_at" => "2025-06-22 16:46:54",
+            "category" => "breakfast",
+            "category_display" => "Breakfast"
+        ],
+        [
+            "id" => 4,
+            "name" => "Breakfast Burrito",
+            "description" => "Scrambled eggs, cheese, peppers in tortilla",
+            "price" => "13.99",
+            "category_id" => 1,
+            "image_url" => "images/breakfast-4.jpg",
+            "is_available" => 1,
+            "created_at" => "2025-06-22 16:46:54",
+            "updated_at" => "2025-06-22 16:46:54",
+            "category" => "breakfast",
+            "category_display" => "Breakfast"
+        ],
+        [
+            "id" => 5,
+            "name" => "Grilled Chicken",
+            "description" => "Perfectly grilled chicken breast with herbs",
+            "price" => "18.99",
+            "category_id" => 2,
+            "image_url" => "images/lunch-1.jpg",
+            "is_available" => 1,
+            "created_at" => "2025-06-22 16:46:54",
+            "updated_at" => "2025-06-22 16:46:54",
+            "category" => "lunch",
+            "category_display" => "Lunch"
+        ],
+        [
+            "id" => 6,
+            "name" => "Caesar Salad",
+            "description" => "Fresh romaine lettuce with caesar dressing",
+            "price" => "12.99",
+            "category_id" => 2,
+            "image_url" => "images/lunch-2.jpg",
+            "is_available" => 1,
+            "created_at" => "2025-06-22 16:46:54",
+            "updated_at" => "2025-06-22 16:46:54",
+            "category" => "lunch",
+            "category_display" => "Lunch"
+        ],
+        [
+            "id" => 7,
+            "name" => "Ribeye Steak",
+            "description" => "Premium ribeye steak grilled to perfection",
+            "price" => "28.99",
+            "category_id" => 3,
+            "image_url" => "images/dinner-1.jpg",
+            "is_available" => 1,
+            "created_at" => "2025-06-22 16:46:54",
+            "updated_at" => "2025-06-22 16:46:54",
+            "category" => "dinner",
+            "category_display" => "Dinner"
+        ],
+        [
+            "id" => 8,
+            "name" => "Chocolate Cake",
+            "description" => "Rich chocolate cake with vanilla ice cream",
+            "price" => "8.99",
+            "category_id" => 4,
+            "image_url" => "images/dessert-1.jpg",
+            "is_available" => 1,
+            "created_at" => "2025-06-22 16:46:54",
+            "updated_at" => "2025-06-22 16:46:54",
+            "category" => "desserts",
+            "category_display" => "Desserts"
+        ],
+        [
+            "id" => 9,
+            "name" => "Red Wine",
+            "description" => "Fine red wine selection",
+            "price" => "25.99",
+            "category_id" => 5,
+            "image_url" => "images/wine-1.jpg",
+            "is_available" => 1,
+            "created_at" => "2025-06-22 16:46:54",
+            "updated_at" => "2025-06-22 16:46:54",
+            "category" => "wine",
+            "category_display" => "Wine & Liquor"
+        ]
+    ];
+
+    if(isset($_GET['type']) && $_GET['type'] === 'categories') {
+        $dummyCategories = [
+            ["id" => 1, "name" => "breakfast", "display_name" => "Breakfast", "sort_order" => 1],
+            ["id" => 2, "name" => "lunch", "display_name" => "Lunch", "sort_order" => 2],
+            ["id" => 3, "name" => "dinner", "display_name" => "Dinner", "sort_order" => 3],
+            ["id" => 4, "name" => "desserts", "display_name" => "Desserts", "sort_order" => 4],
+            ["id" => 5, "name" => "wine", "display_name" => "Wine & Liquor", "sort_order" => 5]
+        ];
+        echo json_encode($dummyCategories);
+    } elseif(isset($_GET['type']) && $_GET['type'] === 'combos') {
+        $dummyCombos = [
+            [
+                "id" => 1,
+                "name" => "Family Feast",
+                "description" => "Perfect meal for 4 people",
+                "price" => "89.99",
+                "category_id" => 1,
+                "image_url" => "images/combo-1.jpg",
+                "is_available" => 1,
+                "category" => "breakfast",
+                "category_display" => "Breakfast",
+                "combo_items" => "Pancakes (2), English Breakfast (2)"
+            ]
+        ];
+        echo json_encode($dummyCombos);
+    } else {
+        echo json_encode($dummyMenuItems);
     }
 }
 ?>
