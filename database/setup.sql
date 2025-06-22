@@ -1,4 +1,3 @@
-
 -- Database setup for Mall Road House
 CREATE DATABASE IF NOT EXISTS mall_road_house;
 USE mall_road_house;
@@ -154,3 +153,57 @@ INSERT IGNORE INTO combo_items (name, description, price, category_id) VALUES
 ('Lunch Special', 'Grilled chicken with salad and fries', 19.99, 2),
 ('Dinner Combo', 'Pasta with garlic bread and dessert', 21.99, 3),
 ('Burger Meal', 'Beef burger with fries and drink', 16.99, 2);
+
+-- Insert sample combo items
+INSERT INTO combo_items (name, description, price, category_id, image_url, is_available) VALUES
+('Family Feast', 'Perfect meal for 4 people including appetizers, mains and desserts', 89.99, 7, 'images/combo-1.jpg', 1),
+('Couple\'s Special', 'Romantic dinner for 2 with wine pairing', 59.99, 7, 'images/combo-2.jpg', 1);
+
+-- Insert combo item relations
+INSERT INTO combo_item_relations (combo_id, menu_item_id, quantity, is_optional) VALUES
+(1, 1, 2, 0), -- 2 Grilled Salmon
+(1, 5, 1, 0), -- 1 Caesar Salad
+(1, 9, 2, 0), -- 2 Chocolate Cake
+(2, 2, 2, 0), -- 2 Ribeye Steak
+(2, 10, 1, 1), -- 1 Red Wine (optional)
+(2, 8, 2, 0); -- 2 Tiramisu
+
+-- Create orders table for managing takeaway orders
+CREATE TABLE IF NOT EXISTS orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id VARCHAR(20) UNIQUE NOT NULL,
+    customer_name VARCHAR(100) NOT NULL,
+    customer_phone VARCHAR(15) NOT NULL,
+    customer_email VARCHAR(100),
+    customer_address TEXT NOT NULL,
+    special_instructions TEXT,
+    order_items JSON NOT NULL,
+    subtotal DECIMAL(10,2) NOT NULL,
+    delivery_fee DECIMAL(10,2) NOT NULL DEFAULT 40.00,
+    total DECIMAL(10,2) NOT NULL,
+    order_type ENUM('takeaway', 'dine_in') DEFAULT 'takeaway',
+    order_status ENUM('pending', 'preparing', 'ready', 'out_for_delivery', 'delivered', 'cancelled') DEFAULT 'pending',
+    payment_status ENUM('pending', 'paid', 'failed') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_order_id (order_id),
+    INDEX idx_customer_phone (customer_phone),
+    INDEX idx_order_status (order_status),
+    INDEX idx_created_at (created_at)
+);
+
+-- Create customers table for optional customer profiles
+CREATE TABLE IF NOT EXISTS customers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    phone VARCHAR(15) UNIQUE NOT NULL,
+    email VARCHAR(100),
+    default_address TEXT,
+    total_orders INT DEFAULT 0,
+    total_spent DECIMAL(10,2) DEFAULT 0.00,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_phone (phone),
+    INDEX idx_email (email)
+);
