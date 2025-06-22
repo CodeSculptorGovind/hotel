@@ -1,168 +1,19 @@
 
 <?php include 'includes/header.php'; ?>
 
-<style>
-.wine-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 15px;
-}
+<section class="hero-wrap hero-bread" style="background-image: url('images/bg_1.jpg');">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>Wine & Liquor</span></p>
+                <h1 class="mb-0 bread">Wine & Liquor Collection</h1>
+            </div>
+        </div>
+    </div>
+</section>
 
-.wine-header {
-    text-align: center;
-    margin-bottom: 40px;
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.wine-categories {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 30px;
-}
-
-.wine-category-btn {
-    background: #f8f9fa;
-    border: 2px solid #e0e0e0;
-    border-radius: 25px;
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.wine-category-btn.active {
-    background: #8b0000;
-    color: white;
-    border-color: #8b0000;
-}
-
-.wine-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-}
-
-@media (min-width: 768px) {
-    .wine-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 1024px) {
-    .wine-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-.wine-card {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease;
-}
-
-.wine-card:hover {
-    transform: translateY(-5px);
-}
-
-.wine-card-image {
-    width: 100%;
-    height: 200px;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-}
-
-.wine-card-content {
-    padding: 20px;
-}
-
-.wine-card-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 8px;
-    color: #8b0000;
-}
-
-.wine-card-type {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-.wine-card-description {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 15px;
-    line-height: 1.5;
-}
-
-.wine-card-price {
-    font-size: 20px;
-    font-weight: bold;
-    color: #8b0000;
-    margin-bottom: 15px;
-}
-
-.wine-card-details {
-    font-size: 12px;
-    color: #888;
-    margin-bottom: 15px;
-}
-
-.wine-order-controls {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.wine-quantity-controls {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.wine-quantity-btn {
-    width: 35px;
-    height: 35px;
-    border: 2px solid #8b0000;
-    background: white;
-    color: #8b0000;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.wine-quantity-btn:hover, .wine-quantity-btn.active {
-    background: #8b0000;
-    color: white;
-}
-
-.wine-add-btn {
-    background: #8b0000;
-    color: white;
-    border: none;
-    border-radius: 25px;
-    padding: 8px 16px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.age-verification {
+<!-- Age Verification Modal -->
+<div class="age-verification" id="ageVerification" style="
     position: fixed;
     top: 0;
     left: 0;
@@ -173,83 +24,157 @@
     align-items: center;
     justify-content: center;
     z-index: 2000;
-}
+">
+    <div class="age-verification-modal" style="
+        background: white;
+        padding: 40px;
+        border-radius: 15px;
+        text-align: center;
+        max-width: 400px;
+        margin: 20px;
+    ">
+        <h3 style="color: #8b0000; margin-bottom: 20px;">🍷 Age Verification Required</h3>
+        <p>You must be 21 years or older to view alcoholic beverages.</p>
+        <p>Are you 21 or older?</p>
+        <button onclick="confirmAge(true)" style="
+            background: #8b0000;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            margin: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        ">Yes, I'm 21+</button>
+        <button onclick="confirmAge(false)" style="
+            background: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            margin: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        ">No, I'm under 21</button>
+    </div>
+</div>
 
-.age-verification-modal {
-    background: white;
-    padding: 40px;
-    border-radius: 15px;
-    text-align: center;
-    max-width: 400px;
-    margin: 20px;
-}
+<section class="ftco-section" id="wineContent" style="display: none;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-7 heading-section text-center ftco-animate mb-5">
+                <h2 class="mb-4">Wine & Liquor Collection</h2>
+                <p>Discover our premium selection of wines, spirits, and cocktails</p>
+                <div class="alert alert-warning" role="alert">
+                    ⚠️ Must be 21+ to purchase alcoholic beverages. Please drink responsibly.
+                </div>
+            </div>
+        </div>
 
-.age-verification h3 {
-    color: #8b0000;
-    margin-bottom: 20px;
-}
+        <div class="row d-md-flex justify-content-center">
+            <div class="col-lg-12 ftco-animate p-md-5">
+                <div class="row">
+                    <div class="col-md-12 nav-link-wrap mb-5">
+                        <div class="nav ftco-animate nav-pills justify-content-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link active" id="v-pills-all-wine-tab" data-toggle="pill" href="#v-pills-all-wine" role="tab" aria-controls="v-pills-all-wine" aria-selected="true">All</a>
+                            <a class="nav-link" id="v-pills-wine-tab" data-toggle="pill" href="#v-pills-wine-only" role="tab" aria-controls="v-pills-wine-only" aria-selected="false">🍷 Wine</a>
+                            <a class="nav-link" id="v-pills-whiskey-tab" data-toggle="pill" href="#v-pills-whiskey" role="tab" aria-controls="v-pills-whiskey" aria-selected="false">🥃 Whiskey</a>
+                            <a class="nav-link" id="v-pills-vodka-tab" data-toggle="pill" href="#v-pills-vodka" role="tab" aria-controls="v-pills-vodka" aria-selected="false">🍸 Vodka</a>
+                            <a class="nav-link" id="v-pills-beer-tab" data-toggle="pill" href="#v-pills-beer" role="tab" aria-controls="v-pills-beer" aria-selected="false">🍺 Beer</a>
+                            <a class="nav-link" id="v-pills-cocktails-tab" data-toggle="pill" href="#v-pills-cocktails" role="tab" aria-controls="v-pills-cocktails" aria-selected="false">🍹 Cocktails</a>
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-flex align-items-center">
+                        <div class="tab-content ftco-animate" id="v-pills-tabContent">
 
-.age-btn {
+                            <!-- All Wine Items Tab -->
+                            <div class="tab-pane fade show active" id="v-pills-all-wine" role="tabpanel" aria-labelledby="v-pills-all-wine-tab">
+                                <div class="row" id="all-wine-menu">
+                                    <div class="col-12 text-center">
+                                        <p>Loading wine collection...</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Wine Tab -->
+                            <div class="tab-pane fade" id="v-pills-wine-only" role="tabpanel" aria-labelledby="v-pills-wine-tab">
+                                <div class="row" id="wine-menu">
+                                    <!-- Wine items will be loaded here -->
+                                </div>
+                            </div>
+
+                            <!-- Whiskey Tab -->
+                            <div class="tab-pane fade" id="v-pills-whiskey" role="tabpanel" aria-labelledby="v-pills-whiskey-tab">
+                                <div class="row" id="whiskey-menu">
+                                    <!-- Whiskey items will be loaded here -->
+                                </div>
+                            </div>
+
+                            <!-- Vodka Tab -->
+                            <div class="tab-pane fade" id="v-pills-vodka" role="tabpanel" aria-labelledby="v-pills-vodka-tab">
+                                <div class="row" id="vodka-menu">
+                                    <!-- Vodka items will be loaded here -->
+                                </div>
+                            </div>
+
+                            <!-- Beer Tab -->
+                            <div class="tab-pane fade" id="v-pills-beer" role="tabpanel" aria-labelledby="v-pills-beer-tab">
+                                <div class="row" id="beer-menu">
+                                    <!-- Beer items will be loaded here -->
+                                </div>
+                            </div>
+
+                            <!-- Cocktails Tab -->
+                            <div class="tab-pane fade" id="v-pills-cocktails" role="tabpanel" aria-labelledby="v-pills-cocktails-tab">
+                                <div class="row" id="cocktails-menu">
+                                    <!-- Cocktails items will be loaded here -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Floating Cart Button -->
+<button class="cart-floating" id="cartFloating" onclick="openCart()" style="
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
     background: #8b0000;
     color: white;
     border: none;
-    border-radius: 8px;
-    padding: 12px 24px;
-    margin: 10px;
+    border-radius: 50px;
+    padding: 15px 20px;
     font-size: 16px;
     font-weight: bold;
+    box-shadow: 0 4px 20px rgba(139, 0, 0, 0.3);
     cursor: pointer;
-}
-
-.age-btn.secondary {
-    background: #6c757d;
-}
-
-.wine-disclaimer {
-    background: #fff3cd;
-    border: 1px solid #ffeaa7;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 20px;
-    font-size: 14px;
-    text-align: center;
-}
-</style>
-
-<!-- Age Verification Modal -->
-<div class="age-verification" id="ageVerification">
-    <div class="age-verification-modal">
-        <h3>🍷 Age Verification Required</h3>
-        <p>You must be 21 years or older to view alcoholic beverages.</p>
-        <p>Are you 21 or older?</p>
-        <button class="age-btn" onclick="confirmAge(true)">Yes, I'm 21+</button>
-        <button class="age-btn secondary" onclick="confirmAge(false)">No, I'm under 21</button>
-    </div>
-</div>
-
-<div class="wine-container" id="wineContent" style="display: none;">
-    <div class="wine-header">
-        <h1>🍷 Wine & Liquor Collection</h1>
-        <p>Discover our premium selection of wines, spirits, and cocktails</p>
-        
-        <div class="wine-disclaimer">
-            ⚠️ Must be 21+ to purchase alcoholic beverages. Please drink responsibly.
-        </div>
-        
-        <div class="wine-categories">
-            <button class="wine-category-btn active" data-category="all">All</button>
-            <button class="wine-category-btn" data-category="wine">🍷 Wine</button>
-            <button class="wine-category-btn" data-category="whiskey">🥃 Whiskey</button>
-            <button class="wine-category-btn" data-category="vodka">🍸 Vodka</button>
-            <button class="wine-category-btn" data-category="beer">🍺 Beer</button>
-            <button class="wine-category-btn" data-category="cocktails">🍹 Cocktails</button>
-        </div>
-    </div>
-
-    <div class="wine-grid" id="wineGrid">
-        <div class="loading">Loading wine collection...</div>
-    </div>
-</div>
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+">
+    <span class="cart-count" id="cartCount" style="
+        background: white;
+        color: #8b0000;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+    ">0</span>
+    🍷 Cart
+</button>
 
 <script>
 let wineItems = [];
@@ -292,37 +217,60 @@ async function loadWineItems() {
             item.name.toLowerCase().includes('cocktail')
         );
         
-        displayWineItems(wineItems);
+        displayAllWineItems(wineItems);
+        displayWineByCategory(wineItems);
+        updateCartDisplay();
     } catch (error) {
         console.error('Error loading wine items:', error);
-        document.getElementById('wineGrid').innerHTML = '<div class="loading">Error loading items. Please try again.</div>';
+        document.getElementById('all-wine-menu').innerHTML = '<div class="col-12 text-center">Error loading items. Please try again.</div>';
     }
 }
 
-function displayWineItems(items) {
-    const wineGrid = document.getElementById('wineGrid');
+function displayAllWineItems(items) {
+    const allWineMenu = document.getElementById('all-wine-menu');
+    allWineMenu.innerHTML = renderWineItems(items);
+}
+
+function displayWineByCategory(wineItems) {
+    const categories = ['wine', 'whiskey', 'vodka', 'beer', 'cocktails'];
     
+    categories.forEach(category => {
+        const categoryItems = wineItems.filter(item => getWineCategory(item) === category);
+        const container = document.getElementById(category + '-menu');
+        if (container) {
+            container.innerHTML = renderWineItems(categoryItems);
+        }
+    });
+}
+
+function renderWineItems(items) {
     if (items.length === 0) {
-        wineGrid.innerHTML = '<div class="loading">No items found in this category</div>';
-        return;
+        return '<div class="col-12 text-center"><p>No items available in this category.</p></div>';
     }
 
-    wineGrid.innerHTML = items.map(item => `
-        <div class="wine-card" data-category="${getWineCategory(item)}">
-            <div class="wine-card-image" style="background-image: url('${item.image_url || 'images/wine-1.jpg'}')"></div>
-            <div class="wine-card-content">
-                <div class="wine-card-type">${getWineCategory(item)}</div>
-                <div class="wine-card-title">${item.name}</div>
-                <div class="wine-card-description">${item.description || 'Premium quality beverage'}</div>
-                <div class="wine-card-details">Served chilled | 21+ only</div>
-                <div class="wine-card-price">₹${item.price}</div>
-                <div class="wine-order-controls">
-                    <div class="wine-quantity-controls">
-                        <button class="wine-quantity-btn" onclick="decreaseWineQuantity(${item.id})">-</button>
-                        <span id="wine-qty-${item.id}">0</span>
-                        <button class="wine-quantity-btn" onclick="increaseWineQuantity(${item.id})">+</button>
+    return items.map(item => `
+        <div class="col-md-6">
+            <div class="menus d-flex ftco-animate">
+                <div class="menu-img img" style="background-image: url(${item.image_url || 'images/wine-1.jpg'});"></div>
+                <div class="text">
+                    <div class="d-flex">
+                        <div class="one-half">
+                            <h3>${item.name} <span class="badge badge-danger">21+</span></h3>
+                        </div>
+                        <div class="one-forth">
+                            <span class="price">₹${parseFloat(item.price).toFixed(2)}</span>
+                        </div>
                     </div>
-                    <button class="wine-add-btn" onclick="addWineToCart(${item.id})">Add to Cart</button>
+                    <p>${item.description || 'Premium quality beverage'}</p>
+                    <small class="text-muted">Served chilled | 21+ only</small>
+                    <div class="order-controls mt-3">
+                        <div class="quantity-controls d-inline-flex align-items-center mr-3" id="wine-qty-controls-${item.id}" style="background: #8b0000; border-radius: 8px; display: none !important;">
+                            <button class="btn btn-sm text-white" onclick="decreaseWineQuantity(${item.id})" style="border: none; background: transparent;">-</button>
+                            <span class="text-white px-2" id="wine-qty-${item.id}">0</span>
+                            <button class="btn btn-sm text-white" onclick="increaseWineQuantity(${item.id})" style="border: none; background: transparent;">+</button>
+                        </div>
+                        <button class="btn btn-sm" style="background: #8b0000; color: white;" onclick="addWineToCart(${item.id})" id="wine-add-btn-${item.id}">Add to Cart</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -339,72 +287,93 @@ function getWineCategory(item) {
     return 'wine';
 }
 
-// Category filtering
-document.querySelectorAll('.wine-category-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        document.querySelectorAll('.wine-category-btn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        
-        const category = this.dataset.category;
-        let filteredItems = wineItems;
-        
-        if (category !== 'all') {
-            filteredItems = wineItems.filter(item => getWineCategory(item) === category);
-        }
-        
-        displayWineItems(filteredItems);
-    });
-});
-
-function increaseWineQuantity(itemId) {
-    const qtyElement = document.getElementById(`wine-qty-${itemId}`);
-    let currentQty = parseInt(qtyElement.textContent);
-    currentQty++;
-    qtyElement.textContent = currentQty;
-}
-
-function decreaseWineQuantity(itemId) {
-    const qtyElement = document.getElementById(`wine-qty-${itemId}`);
-    let currentQty = parseInt(qtyElement.textContent);
-    if (currentQty > 0) {
-        currentQty--;
-        qtyElement.textContent = currentQty;
-    }
-}
-
 function addWineToCart(itemId) {
-    const qtyElement = document.getElementById(`wine-qty-${itemId}`);
-    const quantity = parseInt(qtyElement.textContent);
-    
-    if (quantity === 0) {
-        alert('Please select quantity first');
-        return;
-    }
-    
     const item = wineItems.find(item => item.id == itemId);
     const existingItem = wineCart.find(cartItem => cartItem.id == itemId);
     
     if (existingItem) {
-        existingItem.quantity += quantity;
+        existingItem.quantity++;
     } else {
         wineCart.push({
             id: item.id,
             name: item.name,
-            price: item.price,
-            quantity: quantity,
+            price: parseFloat(item.price),
+            quantity: 1,
             image_url: item.image_url,
             type: 'alcoholic'
         });
     }
     
-    // Reset quantity display
-    qtyElement.textContent = '0';
-    
-    // Save to localStorage
-    localStorage.setItem('cart', JSON.stringify(wineCart));
-    
-    // Show success message
+    updateWineItemDisplay(itemId);
+    saveWineCart();
+    updateCartDisplay();
     showToast('Added to cart! 🍷');
+}
+
+function increaseWineQuantity(itemId) {
+    const existingItem = wineCart.find(cartItem => cartItem.id == itemId);
+    if (existingItem) {
+        existingItem.quantity++;
+        updateWineItemDisplay(itemId);
+        saveWineCart();
+        updateCartDisplay();
+    }
+}
+
+function decreaseWineQuantity(itemId) {
+    const existingItem = wineCart.find(cartItem => cartItem.id == itemId);
+    if (existingItem) {
+        existingItem.quantity--;
+        if (existingItem.quantity <= 0) {
+            wineCart = wineCart.filter(item => item.id != itemId);
+            const qtyControls = document.getElementById(`wine-qty-controls-${itemId}`);
+            qtyControls.style.display = 'none';
+        }
+        updateWineItemDisplay(itemId);
+        saveWineCart();
+        updateCartDisplay();
+    }
+}
+
+function updateWineItemDisplay(itemId) {
+    const qtyElement = document.getElementById(`wine-qty-${itemId}`);
+    const qtyControls = document.getElementById(`wine-qty-controls-${itemId}`);
+    const addBtn = document.getElementById(`wine-add-btn-${itemId}`);
+    const existingItem = wineCart.find(cartItem => cartItem.id == itemId);
+    const quantity = existingItem ? existingItem.quantity : 0;
+    
+    if (qtyElement) {
+        qtyElement.textContent = quantity;
+    }
+    
+    if (qtyControls) {
+        qtyControls.style.display = quantity > 0 ? 'inline-flex' : 'none';
+    }
+    
+    if (addBtn) {
+        addBtn.textContent = quantity > 0 ? 'Add More' : 'Add to Cart';
+    }
+}
+
+function saveWineCart() {
+    localStorage.setItem('cart', JSON.stringify(wineCart));
+}
+
+function updateCartDisplay() {
+    const cartFloating = document.getElementById('cartFloating');
+    const cartCount = document.getElementById('cartCount');
+    const totalItems = wineCart.reduce((total, item) => total + item.quantity, 0);
+    
+    if (totalItems > 0) {
+        cartFloating.style.display = 'flex';
+        cartCount.textContent = totalItems;
+    } else {
+        cartFloating.style.display = 'none';
+    }
+}
+
+function openCart() {
+    window.location.href = 'cart.php';
 }
 
 function showToast(message) {
