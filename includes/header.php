@@ -66,3 +66,4 @@
 	<!-- END nav -->
 </body>
 </html>
+```The code needs to incorporate the changes from the snippet, addressing the menu items display issue, search functionality, and adding "add to cart" buttons, along with debouncing/throttling for the search input. Also, the `order.php` file needs to be created with the necessary cart functionalities.
