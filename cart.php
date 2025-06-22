@@ -1,353 +1,246 @@
-
 <?php include 'includes/header.php'; ?>
 
-<style>
-.cart-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px 15px;
-}
-
-.cart-header {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.cart-item {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    margin-bottom: 15px;
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.cart-item-image {
-    width: 60px;
-    height: 60px;
-    border-radius: 8px;
-    background-size: cover;
-    background-position: center;
-    flex-shrink: 0;
-}
-
-.cart-item-details {
-    flex: 1;
-}
-
-.cart-item-name {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 5px;
-}
-
-.cart-item-price {
-    font-size: 14px;
-    color: #e52b34;
-    font-weight: bold;
-}
-
-.cart-item-controls {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 8px;
-}
-
-.cart-quantity-btn {
-    width: 30px;
-    height: 30px;
-    border: 1px solid #e0e0e0;
-    background: #f8f9fa;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.cart-quantity-btn:hover {
-    background: #e52b34;
-    color: white;
-    border-color: #e52b34;
-}
-
-.remove-btn {
-    background: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 5px 10px;
-    font-size: 12px;
-    cursor: pointer;
-}
-
-.cart-summary {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    padding: 20px;
-    margin-bottom: 20px;
-    position: sticky;
-    bottom: 20px;
-}
-
-.summary-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    font-size: 16px;
-}
-
-.summary-row.total {
-    font-weight: bold;
-    font-size: 18px;
-    border-top: 2px solid #e0e0e0;
-    padding-top: 10px;
-    margin-top: 10px;
-    color: #e52b34;
-}
-
-.customer-details {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.form-input {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 16px;
-    outline: none;
-}
-
-.form-input:focus {
-    border-color: #e52b34;
-}
-
-.place-order-btn {
-    width: 100%;
-    background: #e52b34;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    padding: 15px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-bottom: 20px;
-}
-
-.place-order-btn:hover {
-    background: #c41e3a;
-}
-
-.empty-cart {
-    text-align: center;
-    padding: 50px 20px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.back-btn {
-    background: #6c757d;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    text-decoration: none;
-    display: inline-block;
-    margin-bottom: 20px;
-}
-</style>
-
-<div class="cart-container">
-    <a href="order.php" class="back-btn">← Back to Menu</a>
-    
-    <div class="cart-header">
-        <h2>Your Cart</h2>
-        <p id="cartItemCount">0 items</p>
-    </div>
-
-    <div id="cartItems"></div>
-    
-    <div class="cart-summary" id="cartSummary" style="display: none;">
-        <div class="summary-row">
-            <span>Subtotal:</span>
-            <span id="subtotal">₹0</span>
-        </div>
-        <div class="summary-row">
-            <span>Delivery Fee:</span>
-            <span id="deliveryFee">₹40</span>
-        </div>
-        <div class="summary-row total">
-            <span>Total:</span>
-            <span id="total">₹0</span>
+<section class="hero-wrap hero-bread" style="background-image: url('images/bg_1.jpg');">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>Cart</span></p>
+                <h1 class="mb-0 bread">Your Cart</h1>
+            </div>
         </div>
     </div>
+</section>
 
-    <div class="customer-details" id="customerDetails" style="display: none;">
-        <h3>Delivery Details</h3>
-        <form id="orderForm">
-            <div class="form-group">
-                <label class="form-label">Name *</label>
-                <input type="text" class="form-input" id="customerName" required>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="cart-container">
+                    <h3 class="mb-4">Order Summary</h3>
+                    <div id="cartItems">
+                        <!-- Cart items will be loaded here -->
+                    </div>
+
+                    <div class="empty-cart text-center" id="emptyCart" style="display: none;">
+                        <h4>Your cart is empty</h4>
+                        <p>Add some delicious items to get started!</p>
+                        <a href="order.php" class="btn btn-primary">Browse Menu</a>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label class="form-label">Phone Number *</label>
-                <input type="tel" class="form-input" id="customerPhone" required>
+
+            <div class="col-lg-4">
+                <div class="order-summary bg-light p-4 rounded">
+                    <h4 class="mb-3">Order Details</h4>
+                    <div class="order-total mb-3">
+                        <div class="d-flex justify-content-between">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">₹0.00</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span>Tax (5%):</span>
+                            <span id="tax">₹0.00</span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between font-weight-bold">
+                            <span>Total:</span>
+                            <span id="total">₹0.00</span>
+                        </div>
+                    </div>
+
+                    <div class="order-form" id="orderForm" style="display: none;">
+                        <h5 class="mb-3">Customer Information</h5>
+                        <form id="checkoutForm">
+                            <div class="form-group">
+                                <label for="customerName">Full Name *</label>
+                                <input type="text" class="form-control" id="customerName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customerEmail">Email Address *</label>
+                                <input type="email" class="form-control" id="customerEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customerPhone">Phone Number *</label>
+                                <input type="tel" class="form-control" id="customerPhone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="specialInstructions">Special Instructions (Optional)</label>
+                                <textarea class="form-control" id="specialInstructions" rows="3" placeholder="Any special requests for your order..."></textarea>
+                            </div>
+
+                            <div class="alert alert-info">
+                                <strong>Takeaway Order</strong><br>
+                                Your order will be prepared for pickup. You'll receive an order confirmation with pickup details.
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block btn-lg" id="placeOrderBtn">
+                                Place Order
+                            </button>
+                        </form>
+                    </div>
+
+                    <button class="btn btn-outline-primary btn-block" id="proceedBtn" onclick="showOrderForm()">
+                        Proceed to Checkout
+                    </button>
+                </div>
             </div>
-            <div class="form-group">
-                <label class="form-label">Email</label>
-                <input type="email" class="form-input" id="customerEmail">
-            </div>
-            <div class="form-group">
-                <label class="form-label">Delivery Address *</label>
-                <textarea class="form-input" id="customerAddress" rows="3" required placeholder="Enter your complete address"></textarea>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Special Instructions</label>
-                <textarea class="form-input" id="specialInstructions" rows="2" placeholder="Any special requests or instructions"></textarea>
-            </div>
-        </form>
-        
-        <button class="place-order-btn" onclick="placeOrder()">
-            Place Order - <span id="finalTotal">₹0</span>
-        </button>
+        </div>
     </div>
+</section>
 
-    <div class="empty-cart" id="emptyCart">
-        <h3>Your cart is empty</h3>
-        <p>Add some delicious items to get started!</p>
-        <a href="order.php" class="place-order-btn" style="display: inline-block; text-decoration: none; margin-top: 20px;">
-            Browse Menu
-        </a>
+<!-- Order Success Modal -->
+<div class="modal fade" id="orderSuccessModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">Order Placed Successfully!</h5>
+            </div>
+            <div class="modal-body text-center">
+                <div class="mb-3">
+                    <i class="fa fa-check-circle fa-3x text-success"></i>
+                </div>
+                <h4>Thank you for your order!</h4>
+                <p>Your order has been received and is being prepared.</p>
+                <div class="order-details bg-light p-3 rounded mb-3">
+                    <h6>Order Details:</h6>
+                    <p><strong>Order ID:</strong> <span id="orderIdDisplay"></span></p>
+                    <p><strong>Estimated Pickup Time:</strong> <span id="pickupTime"></span></p>
+                </div>
+                <p class="text-muted">We'll send you updates via email. You can also track your order using the link below.</p>
+                <a href="#" id="trackOrderLink" class="btn btn-primary">Track Your Order</a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='index.php'">Continue Shopping</button>
+            </div>
+        </div>
     </div>
 </div>
 
 <script>
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
-const deliveryFee = 40;
 
-function displayCart() {
-    const cartItemsContainer = document.getElementById('cartItems');
-    const cartSummary = document.getElementById('cartSummary');
-    const customerDetails = document.getElementById('customerDetails');
+document.addEventListener('DOMContentLoaded', function() {
+    loadCartItems();
+    updateOrderSummary();
+});
+
+function loadCartItems() {
+    const cartContainer = document.getElementById('cartItems');
     const emptyCart = document.getElementById('emptyCart');
-    
+
     if (cart.length === 0) {
-        cartItemsContainer.innerHTML = '';
-        cartSummary.style.display = 'none';
-        customerDetails.style.display = 'none';
+        cartContainer.style.display = 'none';
         emptyCart.style.display = 'block';
+        document.getElementById('orderForm').style.display = 'none';
+        document.getElementById('proceedBtn').style.display = 'none';
         return;
     }
-    
+
+    cartContainer.style.display = 'block';
     emptyCart.style.display = 'none';
-    cartSummary.style.display = 'block';
-    customerDetails.style.display = 'block';
-    
-    cartItemsContainer.innerHTML = cart.map(item => `
-        <div class="cart-item">
-            <div class="cart-item-image" style="background-image: url('${item.image_url || 'images/menu-1.jpg'}')"></div>
-            <div class="cart-item-details">
-                <div class="cart-item-name">${item.name}</div>
-                <div class="cart-item-price">₹${item.price} each</div>
-                <div class="cart-item-controls">
-                    <button class="cart-quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
-                    <span style="min-width: 20px; text-align: center;">${item.quantity}</span>
-                    <button class="cart-quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
-                    <button class="remove-btn" onclick="removeItem(${item.id})">Remove</button>
+    document.getElementById('proceedBtn').style.display = 'block';
+
+    cartContainer.innerHTML = cart.map(item => `
+        <div class="cart-item border-bottom py-3">
+            <div class="row align-items-center">
+                <div class="col-md-2">
+                    <img src="${item.image_url || 'images/menu-1.jpg'}" class="img-fluid rounded" alt="${item.name}">
                 </div>
-            </div>
-            <div style="text-align: right;">
-                <div style="font-weight: bold; color: #e52b34;">₹${item.price * item.quantity}</div>
+                <div class="col-md-4">
+                    <h6 class="mb-1">${item.name}</h6>
+                    <small class="text-muted">₹${item.price.toFixed(2)} each</small>
+                    ${item.type === 'alcoholic' ? '<span class="badge badge-warning ml-2">21+</span>' : ''}
+                </div>
+                <div class="col-md-3">
+                    <div class="quantity-controls d-flex align-items-center">
+                        <button class="btn btn-sm btn-outline-secondary" onclick="decreaseCartQuantity(${item.id})">-</button>
+                        <span class="mx-3">${item.quantity}</span>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="increaseCartQuantity(${item.id})">+</button>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <strong>₹${(item.price * item.quantity).toFixed(2)}</strong>
+                </div>
+                <div class="col-md-1">
+                    <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${item.id})">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
             </div>
         </div>
     `).join('');
-    
-    updateSummary();
 }
 
-function updateQuantity(itemId, change) {
+function updateOrderSummary() {
+    const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+    const tax = subtotal * 0.05;
+    const total = subtotal + tax;
+
+    document.getElementById('subtotal').textContent = `₹${subtotal.toFixed(2)}`;
+    document.getElementById('tax').textContent = `₹${tax.toFixed(2)}`;
+    document.getElementById('total').textContent = `₹${total.toFixed(2)}`;
+}
+
+function increaseCartQuantity(itemId) {
     const item = cart.find(item => item.id == itemId);
     if (item) {
-        item.quantity += change;
+        item.quantity++;
+        saveCart();
+        loadCartItems();
+        updateOrderSummary();
+    }
+}
+
+function decreaseCartQuantity(itemId) {
+    const item = cart.find(item => item.id == itemId);
+    if (item) {
+        item.quantity--;
         if (item.quantity <= 0) {
-            removeItem(itemId);
+            removeFromCart(itemId);
         } else {
-            localStorage.setItem('cart', JSON.stringify(cart));
-            displayCart();
+            saveCart();
+            loadCartItems();
+            updateOrderSummary();
         }
     }
 }
 
-function removeItem(itemId) {
+function removeFromCart(itemId) {
     cart = cart.filter(item => item.id != itemId);
+    saveCart();
+    loadCartItems();
+    updateOrderSummary();
+}
+
+function saveCart() {
     localStorage.setItem('cart', JSON.stringify(cart));
-    displayCart();
 }
 
-function updateSummary() {
-    const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-    const total = subtotal + deliveryFee;
-    const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
-    
-    document.getElementById('cartItemCount').textContent = `${itemCount} item${itemCount !== 1 ? 's' : ''}`;
-    document.getElementById('subtotal').textContent = `₹${subtotal}`;
-    document.getElementById('total').textContent = `₹${total}`;
-    document.getElementById('finalTotal').textContent = `₹${total}`;
+function showOrderForm() {
+    document.getElementById('orderForm').style.display = 'block';
+    document.getElementById('proceedBtn').style.display = 'none';
 }
 
-async function placeOrder() {
-    const form = document.getElementById('orderForm');
-    const formData = new FormData(form);
-    
-    if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-    }
-    
-    const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-    const total = subtotal + deliveryFee;
-    
+// Order placement
+document.getElementById('checkoutForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
     const orderData = {
         customer_name: document.getElementById('customerName').value,
-        customer_phone: document.getElementById('customerPhone').value,
         customer_email: document.getElementById('customerEmail').value,
-        customer_address: document.getElementById('customerAddress').value,
+        customer_phone: document.getElementById('customerPhone').value,
         special_instructions: document.getElementById('specialInstructions').value,
-        order_items: cart,
-        subtotal: subtotal,
-        delivery_fee: deliveryFee,
-        total: total,
+        items: cart,
+        subtotal: cart.reduce((total, item) => total + (item.price * item.quantity), 0),
+        tax: cart.reduce((total, item) => total + (item.price * item.quantity), 0) * 0.05,
+        total: cart.reduce((total, item) => total + (item.price * item.quantity), 0) * 1.05,
         order_type: 'takeaway'
     };
-    
+
     try {
+        document.getElementById('placeOrderBtn').disabled = true;
+        document.getElementById('placeOrderBtn').innerHTML = 'Processing...';
+
         const response = await fetch('api/orders.php', {
             method: 'POST',
             headers: {
@@ -355,26 +248,30 @@ async function placeOrder() {
             },
             body: JSON.stringify(orderData)
         });
-        
+
         const result = await response.json();
-        
+
         if (result.success) {
             // Clear cart
-            localStorage.removeItem('cart');
-            
-            // Redirect to order confirmation
-            window.location.href = `order-confirmation.php?order_id=${result.order_id}`;
+            cart = [];
+            saveCart();
+
+            // Show success modal
+            document.getElementById('orderIdDisplay').textContent = result.order_id;
+            document.getElementById('pickupTime').textContent = result.estimated_pickup;
+            document.getElementById('trackOrderLink').href = `order-status.php?order_id=${result.tracking_token}`;
+
+            $('#orderSuccessModal').modal('show');
         } else {
-            alert('Error placing order. Please try again.');
+            throw new Error(result.message || 'Failed to place order');
         }
     } catch (error) {
-        console.error('Error placing order:', error);
-        alert('Error placing order. Please try again.');
+        alert('Error placing order: ' + error.message);
+    } finally {
+        document.getElementById('placeOrderBtn').disabled = false;
+        document.getElementById('placeOrderBtn').innerHTML = 'Place Order';
     }
-}
-
-// Load cart on page load
-document.addEventListener('DOMContentLoaded', displayCart);
+});
 </script>
 
 <?php include 'includes/footer.php'; ?>

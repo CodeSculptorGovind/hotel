@@ -1,125 +1,147 @@
 
 <?php
-session_start();
-header("Content-Type: application/json");
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type, Authorization");
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
+header('Access-Control-Allow-Headers: Content-Type');
 
-include_once '../config/database.php';
-
-$database = new Database();
-$db = $database->getConnection();
+require_once '../config/database.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 
-switch($method) {
-    case 'POST':
-        createOrder($db);
-        break;
-        
-    case 'GET':
-        if(isset($_GET['order_id'])) {
-            getOrder($_GET['order_id'], $db);
-        } else {
-            getAllOrders($db);
-        }
-        break;
-        
-    case 'PUT':
-        if(isset($_GET['order_id'])) {
-            updateOrderStatus($_GET['order_id'], $db);
-        }
-        break;
-}
-
-function createOrder($db) {
-    $input = json_decode(file_get_contents('php://input'), true);
-    
-    try {
-        $db->beginTransaction();
-        
-        // Generate order ID
-        $order_id = 'ORD' . date('Ymd') . strtoupper(substr(uniqid(), -6));
-        
-        // Insert order
-        $query = "INSERT INTO orders (order_id, customer_name, customer_phone, customer_email, 
-                  customer_address, special_instructions, order_items, subtotal, delivery_fee, 
-                  total, order_type, order_status, created_at) 
-                  VALUES (:order_id, :customer_name, :customer_phone, :customer_email, 
-                  :customer_address, :special_instructions, :order_items, :subtotal, 
-                  :delivery_fee, :total, :order_type, 'pending', NOW())";
-        
-        $stmt = $db->prepare($query);
-        $stmt->bindParam(':order_id', $order_id);
-        $stmt->bindParam(':customer_name', $input['customer_name']);
-        $stmt->bindParam(':customer_phone', $input['customer_phone']);
-        $stmt->bindParam(':customer_email', $input['customer_email']);
-        $stmt->bindParam(':customer_address', $input['customer_address']);
-        $stmt->bindParam(':special_instructions', $input['special_instructions']);
-        $stmt->bindParam(':order_items', json_encode($input['order_items']));
-        $stmt->bindParam(':subtotal', $input['subtotal']);
-        $stmt->bindParam(':delivery_fee', $input['delivery_fee']);
-        $stmt->bindParam(':total', $input['total']);
-        $stmt->bindParam(':order_type', $input['order_type']);
-        
-        $stmt->execute();
-        
-        $db->commit();
-        
-        echo json_encode([
-            'success' => true, 
-            'message' => 'Order placed successfully',
-            'order_id' => $order_id
-        ]);
-        
-    } catch(Exception $e) {
-        $db->rollback();
-        echo json_encode([
-            'success' => false, 
-            'message' => 'Failed to place order: ' . $e->getMessage()
-        ]);
+try {
+    switch ($method) {
+        case 'POST':
+            $input = json_decode(file_get_contents('php://input'), true);
+            
+            if (!$input) {
+                throw new Exception('Invalid JSON data');
+            }
+            
+            // Validate required fields
+            $required_fields = ['customer_name', 'customer_email', 'customer_phone', 'items', 'total'];
+            foreach ($required_fields as $field) {
+                if (empty($input[$field])) {
+                    throw new Exception("Missing required field: $field");
+                }
+            }
+            
+            // Generate tracking token (expires in 24 hours)
+            $tracking_token = bin2hex(random_bytes(16));
+            $expires_at = date('Y-m-d H:i:s', strtotime('+24 hours'));
+            
+            // Generate order ID
+            $order_id = 'MRH' . date('Ymd') . str_pad(rand(1, 999), 3, '0', STR_PAD_LEFT);
+            
+            // Calculate estimated pickup time (45 minutes from now)
+            $estimated_pickup = date('Y-m-d H:i:s', strtotime('+45 minutes'));
+            $pickup_display = date('g:i A', strtotime('+45 minutes'));
+            
+            // Insert order
+            $stmt = $pdo->prepare("
+                INSERT INTO orders (
+                    order_id, tracking_token, customer_name, customer_email, 
+                    customer_phone, special_instructions, subtotal, tax, total, 
+                    order_type, status, estimated_pickup, expires_at, created_at
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?, NOW())
+            ");
+            
+            $stmt->execute([
+                $order_id,
+                $tracking_token,
+                $input['customer_name'],
+                $input['customer_email'],
+                $input['customer_phone'],
+                $input['special_instructions'] ?? '',
+                $input['subtotal'],
+                $input['tax'] ?? ($input['subtotal'] * 0.05),
+                $input['total'],
+                $input['order_type'] ?? 'takeaway',
+                $estimated_pickup,
+                $expires_at
+            ]);
+            
+            $db_order_id = $pdo->lastInsertId();
+            
+            // Insert order items
+            $stmt = $pdo->prepare("
+                INSERT INTO order_items (order_id, item_id, item_name, price, quantity, subtotal) 
+                VALUES (?, ?, ?, ?, ?, ?)
+            ");
+            
+            foreach ($input['items'] as $item) {
+                $stmt->execute([
+                    $db_order_id,
+                    $item['id'],
+                    $item['name'],
+                    $item['price'],
+                    $item['quantity'],
+                    $item['price'] * $item['quantity']
+                ]);
+            }
+            
+            echo json_encode([
+                'success' => true,
+                'message' => 'Order placed successfully',
+                'order_id' => $order_id,
+                'tracking_token' => $tracking_token,
+                'estimated_pickup' => $pickup_display,
+                'expires_at' => $expires_at
+            ]);
+            break;
+            
+        case 'GET':
+            if (isset($_GET['tracking_token'])) {
+                $token = $_GET['tracking_token'];
+                
+                $stmt = $pdo->prepare("
+                    SELECT o.*, oi.item_name, oi.price, oi.quantity, oi.subtotal 
+                    FROM orders o 
+                    LEFT JOIN order_items oi ON o.id = oi.order_id 
+                    WHERE o.tracking_token = ? AND o.expires_at > NOW()
+                ");
+                $stmt->execute([$token]);
+                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                if (empty($results)) {
+                    throw new Exception('Order not found or expired');
+                }
+                
+                // Group items by order
+                $order = $results[0];
+                $order['items'] = [];
+                
+                foreach ($results as $row) {
+                    if ($row['item_name']) {
+                        $order['items'][] = [
+                            'name' => $row['item_name'],
+                            'price' => $row['price'],
+                            'quantity' => $row['quantity'],
+                            'subtotal' => $row['subtotal']
+                        ];
+                    }
+                }
+                
+                // Remove duplicate order fields
+                unset($order['item_name'], $order['price'], $order['quantity'], $order['subtotal']);
+                
+                echo json_encode($order);
+            } else {
+                // Return all orders (admin use)
+                $stmt = $pdo->prepare("SELECT * FROM orders ORDER BY created_at DESC");
+                $stmt->execute();
+                echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+            }
+            break;
+            
+        default:
+            throw new Exception('Method not allowed');
     }
-}
-
-function getOrder($order_id, $db) {
-    $query = "SELECT * FROM orders WHERE order_id = :order_id";
-    $stmt = $db->prepare($query);
-    $stmt->bindParam(':order_id', $order_id);
-    $stmt->execute();
-    
-    $order = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-    if($order) {
-        $order['order_items'] = json_decode($order['order_items'], true);
-        echo json_encode(['success' => true, 'order' => $order]);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Order not found']);
-    }
-}
-
-function getAllOrders($db) {
-    $query = "SELECT order_id, customer_name, customer_phone, total, order_status, 
-              created_at FROM orders ORDER BY created_at DESC";
-    $stmt = $db->prepare($query);
-    $stmt->execute();
-    
-    $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo json_encode(['success' => true, 'orders' => $orders]);
-}
-
-function updateOrderStatus($order_id, $db) {
-    $input = json_decode(file_get_contents('php://input'), true);
-    
-    $query = "UPDATE orders SET order_status = :status WHERE order_id = :order_id";
-    $stmt = $db->prepare($query);
-    $stmt->bindParam(':status', $input['status']);
-    $stmt->bindParam(':order_id', $order_id);
-    
-    if($stmt->execute()) {
-        echo json_encode(['success' => true, 'message' => 'Order status updated']);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Failed to update order status']);
-    }
+} catch (Exception $e) {
+    http_response_code(400);
+    echo json_encode([
+        'success' => false,
+        'message' => $e->getMessage()
+    ]);
 }
 ?>

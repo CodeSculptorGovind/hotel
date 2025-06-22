@@ -264,7 +264,7 @@ function renderWineItems(items) {
                     <p>${item.description || 'Premium quality beverage'}</p>
                     <small class="text-muted">Served chilled | 21+ only</small>
                     <div class="order-controls mt-3">
-                        <div class="quantity-controls d-inline-flex align-items-center mr-3" id="wine-qty-controls-${item.id}" style="background: #8b0000; border-radius: 8px; display: none !important;">
+                        <div class="quantity-controls d-inline-flex align-items-center mr-3" id="wine-qty-controls-${item.id}" style="background: #8b0000; border-radius: 8px; display: none;">
                             <button class="btn btn-sm text-white" onclick="decreaseWineQuantity(${item.id})" style="border: none; background: transparent;">-</button>
                             <span class="text-white px-2" id="wine-qty-${item.id}">0</span>
                             <button class="btn btn-sm text-white" onclick="increaseWineQuantity(${item.id})" style="border: none; background: transparent;">+</button>
