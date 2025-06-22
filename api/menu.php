@@ -10,6 +10,13 @@ include_once '../config/database.php';
 $database = new Database();
 $db = $database->getConnection();
 
+// Check if database connection was successful
+if ($db === null) {
+    http_response_code(500);
+    echo json_encode(['error' => 'Database connection failed']);
+    exit();
+}
+
 $method = $_SERVER['REQUEST_METHOD'];
 $request = json_decode(file_get_contents('php://input'), true);
 
