@@ -403,7 +403,7 @@ function renderMenuItems(items) {
                             <h3>${item.name}</h3>
                         </div>
                         <div class="one-forth">
-                            <span class="price">₹${parseFloat(item.price).toFixed(2)}</span>
+                            <span class="price">£${parseFloat(item.price).toFixed(2)}</span>
                         </div>
                     </div>
                     <p>${item.description || 'Delicious item from our kitchen'}</p>

@@ -264,7 +264,7 @@ function renderWineItems(items) {
                             <h3>${item.name} <span class="badge badge-danger">21+</span></h3>
                         </div>
                         <div class="one-forth">
-                            <span class="price">₹${parseFloat(item.price).toFixed(2)}</span>
+                            <span class="price">£${parseFloat(item.price).toFixed(2)}</span>
                         </div>
                     </div>
                     <p>${item.description || 'Premium quality beverage'}</p>

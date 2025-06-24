@@ -164,16 +164,16 @@ function displayOrderDetails(order) {
     itemsContainer.innerHTML = order.items.map(item => `
         <tr>
             <td>${item.name}</td>
-            <td>₹${parseFloat(item.price).toFixed(2)}</td>
+            <td>£${parseFloat(item.price).toFixed(2)}</td>
             <td>${item.quantity}</td>
-            <td>₹${parseFloat(item.subtotal).toFixed(2)}</td>
+            <td>£${parseFloat(item.subtotal).toFixed(2)}</td>
         </tr>
     `).join('');
     
     // Order summary
-    document.getElementById('subtotalAmount').textContent = `₹${parseFloat(order.subtotal).toFixed(2)}`;
-    document.getElementById('taxAmount').textContent = `₹${parseFloat(order.tax).toFixed(2)}`;
-    document.getElementById('totalAmount').textContent = `₹${parseFloat(order.total).toFixed(2)}`;
+    document.getElementById('subtotalAmount').textContent = `£${parseFloat(order.subtotal).toFixed(2)}`;
+    document.getElementById('taxAmount').textContent = `£${parseFloat(order.tax).toFixed(2)}`;
+    document.getElementById('totalAmount').textContent = `£${parseFloat(order.total).toFixed(2)}`;
 }
 
 function showOrderNotFound() {

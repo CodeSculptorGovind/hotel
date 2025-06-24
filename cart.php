@@ -35,16 +35,16 @@
                     <div class="order-total mb-3">
                         <div class="d-flex justify-content-between">
                             <span>Subtotal:</span>
-                            <span id="subtotal">₹0.00</span>
+                            <span id="subtotal">£0.00</span>
                         </div>
                         <div class="d-flex justify-content-between">
                             <span>Tax (5%):</span>
-                            <span id="tax">₹0.00</span>
+                            <span id="tax">£0.00</span>
                         </div>
                         <hr>
                         <div class="d-flex justify-content-between font-weight-bold">
                             <span>Total:</span>
-                            <span id="total">₹0.00</span>
+                            <span id="total">£0.00</span>
                         </div>
                     </div>
 
@@ -148,7 +148,7 @@ function loadCartItems() {
                 </div>
                 <div class="col-md-4">
                     <h6 class="mb-1">${item.name}</h6>
-                    <small class="text-muted">₹${item.price.toFixed(2)} each</small>
+                    <small class="text-muted">£${item.price.toFixed(2)} each</small>
                     ${item.type === 'alcoholic' ? '<span class="badge badge-warning ml-2">21+</span>' : ''}
                 </div>
                 <div class="col-md-3">
@@ -159,7 +159,7 @@ function loadCartItems() {
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <strong>₹${(item.price * item.quantity).toFixed(2)}</strong>
+                    <strong>£${(item.price * item.quantity).toFixed(2)}</strong>
                 </div>
                 <div class="col-md-1">
                     <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${item.id})">
@@ -176,9 +176,9 @@ function updateOrderSummary() {
     const tax = subtotal * 0.05;
     const total = subtotal + tax;
 
-    document.getElementById('subtotal').textContent = `₹${subtotal.toFixed(2)}`;
-    document.getElementById('tax').textContent = `₹${tax.toFixed(2)}`;
-    document.getElementById('total').textContent = `₹${total.toFixed(2)}`;
+    document.getElementById('subtotal').textContent = `£${subtotal.toFixed(2)}`;
+    document.getElementById('tax').textContent = `£${tax.toFixed(2)}`;
+    document.getElementById('total').textContent = `£${total.toFixed(2)}`;
 }
 
 function increaseCartQuantity(itemId) {

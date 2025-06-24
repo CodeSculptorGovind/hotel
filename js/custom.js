@@ -348,7 +348,7 @@ function displayMenuPreview(menuItems) {
                                     <h3>${item.name}</h3>
                                 </div>
                                 <div class="one-forth">
-                                    <span class="price">₹${item.price}</span>
+                                    <span class="price">£${item.price}</span>
                                 </div>
                             </div>
                             <p>${item.description || 'Delicious and freshly prepared'}</p>

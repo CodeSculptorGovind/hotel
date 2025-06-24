@@ -264,22 +264,22 @@ function displayOrderDetails(order) {
             ${orderItems.map(item => `
                 <div class="order-item">
                     <span>${item.name} x${item.quantity}</span>
-                    <span>₹${item.price * item.quantity}</span>
+                    <span>£${item.price * item.quantity}</span>
                 </div>
             `).join('')}
         </div>
         
         <div class="detail-row">
             <span>Subtotal:</span>
-            <span>₹${order.subtotal}</span>
+            <span>£${order.subtotal}</span>
         </div>
         <div class="detail-row">
             <span>Delivery Fee:</span>
-            <span>₹${order.delivery_fee}</span>
+            <span>£${order.delivery_fee}</span>
         </div>
         <div class="detail-row total">
             <span>Total:</span>
-            <span>₹${order.total}</span>
+            <span>£${order.total}</span>
         </div>
     `;
 }
