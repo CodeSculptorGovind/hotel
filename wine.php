@@ -1,6 +1,12 @@
 
 <?php include 'includes/header.php'; ?>
 
+<style>
+    .ftco-animate {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+</style>
 <section class="hero-wrap hero-bread" style="background-image: url('images/bg_1.jpg');">
     <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
@@ -74,7 +80,7 @@
         </div>
 
         <div class="row d-md-flex justify-content-center">
-            <div class="col-lg-12 ftco-animate p-md-5">
+            <div class="col-lg-12  p-md-5">
                 <div class="row">
                     <div class="col-md-12 nav-link-wrap mb-5">
                         <div class="nav ftco-animate nav-pills justify-content-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
