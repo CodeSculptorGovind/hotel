@@ -1,5 +1,5 @@
 <?php include 'includes/header.php'; ?>
-
+<!-- 
 <section class="hero-wrap hero-bread" style="background-image: url('images/imgbg2.jpg');">
   <div class="container">
     <div class="row no-gutters slider-text align-items-center justify-content-center">
@@ -10,7 +10,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <section class="ftco-section">
   <div class="container">
