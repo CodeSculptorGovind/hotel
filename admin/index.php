@@ -39,7 +39,12 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="table-menu/index.php">
-                                <i class="fas fa-utensils"></i> Table Menu Management
+                                <i class="fas fa-utensils"></i> Table Menu
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="takeaway-menu/index.php">
+                            <i class="fas fa-shopping-bag"></i> Takeaway Menu
                             </a>
                         </li>
                         <li class="nav-item">
