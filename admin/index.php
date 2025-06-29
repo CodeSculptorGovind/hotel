@@ -1,4 +1,3 @@
-
 <?php include 'auth_check.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,6 +35,11 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="#" onclick="showReservations()">
                                 <i class="fas fa-calendar-check"></i> Reservations
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="table-menu/index.php">
+                                <i class="fas fa-utensils"></i> Table Menu Management
                             </a>
                         </li>
                         <li class="nav-item">
