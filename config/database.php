@@ -2,8 +2,8 @@
 <?php
 class Database {
     private $host = "localhost";
-    private $db_name = "u544192674_mall_road_hous";
-    private $username = "u544192674_mall_road_hous";
+    private $db_name = "u544192674_mallroaddb2";
+    private $username = "u544192674_mallroaddb2";
     private $password = "#7142128Go";
     public $conn;
 
