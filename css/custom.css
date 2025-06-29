@@ -247,6 +247,45 @@
     transform: scale(1.05);
 }
 
+/* Enhanced menu cards hover effects */
+.card:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important;
+}
+
+.card .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(139, 69, 19, 0.4) !important;
+}
+
+/* Mobile menu fixes */
+@media (max-width: 767.98px) {
+    .menu-page-title {
+        font-size: 2.5rem !important;
+    }
+    
+    .hero-wrap {
+        min-height: 400px;
+    }
+    
+    .breadcrumbs {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+    
+    .card {
+        margin-bottom: 2rem;
+    }
+    
+    .card-body {
+        padding: 1.5rem !important;
+    }
+    
+    .ftco-section {
+        padding: 3em 0 !important;
+    }
+}
+
 .menu-item .card-body {
     padding: 1.5rem;
 }
@@ -427,7 +466,7 @@
     font-size: 3.5rem !important;
     font-weight: bold !important;
     color: #fff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5) !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7) !important;
     letter-spacing: 1px;
 }
 
@@ -436,6 +475,51 @@
     color: #f8f9fa;
     margin-top: 10px;
     font-style: italic;
+}
+
+/* Hero section fixes */
+.hero-wrap {
+    position: relative;
+    min-height: 500px;
+}
+
+.hero-wrap .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+.hero-wrap .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Breadcrumb fixes */
+.breadcrumbs {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 8px 16px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.breadcrumbs a {
+    color: #fff !important;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.breadcrumbs a:hover {
+    color: #e52b34 !important;
+}
+
+.breadcrumbs span {
+    color: #e52b34 !important;
+    font-weight: 600;
 }
 
 /* Restaurant Brand Colors - Inspired by logo */
