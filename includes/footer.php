@@ -5,7 +5,7 @@
 				<div class="col-md-6 col-lg-3">
 					<div class="ftco-footer-widget mb-4">
 						<h2 class="ftco-heading-2">Mall Road House</h2>
-						<p>Experience the finest dining in Shimla at Mall Road House. Located on the iconic Mall Road, we offer exceptional cuisine and warm hospitality in the heart of the mountains.</p>
+					
 						<ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
 							<li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
 							<li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
@@ -17,17 +17,17 @@
 					<div class="ftco-footer-widget mb-4">
 						<h2 class="ftco-heading-2">Open Hours</h2>
 						<ul class="list-unstyled open-hours">
-							<li class="d-flex"><span>Monday</span><span>11:00 - 23:00</span></li>
-							<li class="d-flex"><span>Tuesday</span><span>11:00 - 23:00</span></li>
-							<li class="d-flex"><span>Wednesday</span><span>11:00 - 23:00</span></li>
-							<li class="d-flex"><span>Thursday</span><span>11:00 - 23:00</span></li>
-							<li class="d-flex"><span>Friday</span><span>11:00 - 23:00</span></li>
-							<li class="d-flex"><span>Saturday</span><span>11:00 - 23:00</span></li>
-							<li class="d-flex"><span>Sunday</span><span>11:00 - 23:00</span></li>
+						    
+						    <li class="d-flex">		<span>Daily:   Bar Timing <b> 11:00 - 23:00  </b></span></li>
+						
+						    
+							<li class="d-flex"><span> Restaurant Timing <b> 12:00 - 14:30 || 16:00 - 22:00 </b></span> </li>
+						
+						
 						</ul>
 					</div>
 				</div>
-				<div class="col-md-6 col-lg-3">
+			<!--	<div class="col-md-6 col-lg-3">
 					<div class="ftco-footer-widget mb-4">
 						<h2 class="ftco-heading-2">Instagram</h2>
 						<div class="thumb d-sm-flex">
@@ -47,8 +47,10 @@
 							</a>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-6 col-lg-3">
+				</div>  
+			
+				
+			 <!--		<div class="col-md-6 col-lg-3">
 					<div class="ftco-footer-widget mb-4">
 						<h2 class="ftco-heading-2">Newsletter</h2>
 						<p>Stay updated with our latest offers and events at Mall Road House.</p>
@@ -60,14 +62,14 @@
 						</form>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 		<div class="container-fluid px-0 bg-primary py-3">
 			<div class="row no-gutters">
 				<div class="col-md-12 text-center">
-					<p class="mb-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+					<p class="mb-0">
+						Copyright &copy;   All rights reserved by Mall Road House
+					</p>
 				</div>
 			</div>
 		</div>

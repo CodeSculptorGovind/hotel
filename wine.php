@@ -7,7 +7,7 @@
     visibility: visible !important;
   }
 </style>
-<section class="hero-wrap hero-bread" style="background-image: url('images/bg_1.jpg');">
+<section class="hero-wrap hero-bread" style="background-image: url('images/imgbg1.jpg');">
     <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">

@@ -2,9 +2,9 @@
 <?php
 class Database {
     private $host = "localhost";
-    private $db_name = "mall_road_house";
-    private $username = "root";
-    private $password = "";
+    private $db_name = "u544192674_mall_road_hous";
+    private $username = "u544192674_mall_road_hous";
+    private $password = "#7142128Go";
     public $conn;
 
     public function getConnection() {

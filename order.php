@@ -1,6 +1,6 @@
 <?php include 'includes/header.php'; ?>
 
-<section class="hero-wrap hero-bread" style="background-image: url('images/bg_1.jpg');">
+<section class="hero-wrap hero-bread" style="background-image: url('images/imgbg2.jpg');">
     <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
@@ -16,7 +16,7 @@
         <div class="row justify-content-center">
             <div class="col-md-7 heading-section text-center ftco-animate mb-5">
                 <h2 class="mb-4">Order Your Favorites</h2>
-                <p>Browse our delicious menu and place your order for pickup or delivery.</p>
+                <p>Browse our delicious menu and place your order for takeaway or delivery.</p>
             </div>
         </div>
 
@@ -34,10 +34,12 @@
                 <div class="row">
                     <div class="col-md-12 nav-link-wrap mb-5">
                         <div class="nav ftco-animate nav-pills justify-content-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                            <a class="nav-link active" id="v-pills-all-tab" data-toggle="pill" href="#v-pills-all" role="tab" aria-controls="v-pills-all" aria-selected="true">All Items</a>
-                            <a class="nav-link" id="v-pills-breakfast-tab" data-toggle="pill" href="#v-pills-breakfast" role="tab" aria-controls="v-pills-breakfast" aria-selected="false">Breakfast</a>
-                            <a class="nav-link" id="v-pills-lunch-tab" data-toggle="pill" href="#v-pills-lunch" role="tab" aria-controls="v-pills-lunch" aria-selected="false">Lunch</a>
+                            <a class="nav-link active" id="v-pills-all-tab" data-toggle="pill" href="#v-pills-all" role="tab" aria-controls="v-pills-all" aria-selected="true">Food Menu</a>
+                            <a class="nav-link" id="v-pills-breakfast-tab" data-toggle="pill" href="#v-pills-breakfast" role="tab" aria-controls="v-pills-breakfast" aria-selected="false">Lunch Starter</a>
+                            <a class="nav-link" id="v-pills-lunch-tab" data-toggle="pill" href="#v-pills-lunch" role="tab" aria-controls="v-pills-lunch" aria-selected="false">Dinner Starter</a>
+                            <a class="nav-link" id="v-pills-dinner-tab" data-toggle="pill" href="#v-pills-dinner" role="tab" aria-controls="v-pills-dinner" aria-selected="false">Lunch</a>
                             <a class="nav-link" id="v-pills-dinner-tab" data-toggle="pill" href="#v-pills-dinner" role="tab" aria-controls="v-pills-dinner" aria-selected="false">Dinner</a>
+                            <a class="nav-link" id="v-pills-dinner-tab" data-toggle="pill" href="#v-pills-dinner" role="tab" aria-controls="v-pills-dinner" aria-selected="false">Kids Menu</a>
                             <a class="nav-link" id="v-pills-desserts-tab" data-toggle="pill" href="#v-pills-desserts" role="tab" aria-controls="v-pills-desserts" aria-selected="false">Desserts</a>
                             <a class="nav-link" id="v-pills-drinks-tab" data-toggle="pill" href="#v-pills-drinks" role="tab" aria-controls="v-pills-drinks" aria-selected="false">Drinks</a>
                         </div>

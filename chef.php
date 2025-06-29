@@ -1,13 +1,13 @@
 
 <?php include 'includes/header.php'; ?>
 
-<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_5.jpg');" data-stellar-background-ratio="0.5">
+<section class="hero-wrap hero-wrap-2" style="background-image: url('images/imgbg2.jpg');" data-stellar-background-ratio="0.5">
 	<div class="overlay"></div>
 	<div class="container">
 		<div class="row no-gutters slider-text align-items-end justify-content-center">
 			<div class="col-md-9 ftco-animate text-center mb-5">
-				<h1 class="mb-2 bread">Master Chef</h1>
-				<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home <i class="fa fa-chevron-right"></i></a></span> <span>Chef <i class="fa fa-chevron-right"></i></span></p>
+				<h1 class="mb-2 bread">Our Team</h1>
+				<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home <i class="fa fa-chevron-right"></i></a></span> <span>Our Team <i class="fa fa-chevron-right"></i></span></p>
 			</div>
 		</div>
 	</div>
@@ -17,19 +17,19 @@
 	<div class="container">
 		<div class="row justify-content-center mb-5 pb-2">
 			<div class="col-md-7 text-center heading-section ftco-animate">
-				<span class="subheading">Chef</span>
-				<h2 class="mb-4">Our Master Chef</h2>
+				<span class="subheading">Our Team</span>
+				<h2 class="mb-4"></h2>
 			</div>
 		</div>	
 		<div class="row">
 			<div class="col-md-6 col-lg-3 ftco-animate">
 				<div class="staff">
-					<div class="img" style="background-image: url(images/chef-4.jpg);"></div>
+					<div class="img" ></div>
 					<div class="text px-4 pt-2">
-						<h3>John Gustavo</h3>
-						<span class="position mb-2">CEO, Co Founder</span>
+						<h3>Lalit Rautela</h3>
+						<span class="position mb-2">Chef</span>
 						<div class="faded">
-							<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+							<p>Chef Lalit Rautela has honed his culinary skills at some of India’s most iconic establishments including The Taj Mahal Hotel, India Habitat Centre, and The Claridges, New Delhi. His journey has taken him across India, Australia, Malta, and now Scotland, bringing a world of flavours and refined techniques to every dish he creates.</p>
 							<ul class="ftco-social d-flex">
 								<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
 								<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
@@ -42,12 +42,12 @@
 			</div>
 			<div class="col-md-6 col-lg-3 ftco-animate">
 				<div class="staff">
-					<div class="img" style="background-image: url(images/chef-2.jpg);"></div>
+					<div class="img" ></div>
 					<div class="text px-4 pt-2">
-						<h3>Michelle Fraulen</h3>
-						<span class="position mb-2">Head Chef</span>
+						<h3>Anil</h3>
+						<span class="position mb-2">Chef</span>
 						<div class="faded">
-							<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+							<p>Chef Anil, who previously worked alongside Chef Lalit at The Claridges, brings a wealth of international experience from prestigious kitchens such as JW Marriott, Hilton, and The Lalit—across India, Malaysia, and Dubai. His creativity and precision elevate traditional Indian dishes with a modern flair.</p>
 							<ul class="ftco-social d-flex">
 								<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
 								<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
@@ -60,12 +60,12 @@
 			</div>
 			<div class="col-md-6 col-lg-3 ftco-animate">
 				<div class="staff">
-					<div class="img" style="background-image: url(images/chef-3.jpg);"></div>
+					<div class="img" ></div>
 					<div class="text px-4 pt-2">
-						<h3>Alfred Smith</h3>
-						<span class="position mb-2">Chef Cook</span>
+						<h3>Mr Singh</h3>
+						<span class="position mb-2">Manager</span>
 						<div class="faded">
-							<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+							<p>Mr. Singh, the heart of our front-of-house team, began his hospitality journey at the prestigious Taj Mahal Hotel in New Delhi. He went on to work with global brands like the Hyatt Regency, gaining invaluable experience across international locations. In East Dunbartonshire, Mr. Singh has worked around Bishopbriggs, Lenzie, and Kilsyth since 2009—managing respected venues with care and excellence. With his calm leadership and warm hospitality, he ensures every guest feels at home from the moment they walk through our doors.</p>
 							<ul class="ftco-social d-flex">
 								<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
 								<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
@@ -76,29 +76,12 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6 col-lg-3 ftco-animate">
-				<div class="staff">
-					<div class="img" style="background-image: url(images/chef-1.jpg);"></div>
-					<div class="text px-4 pt-2">
-						<h3>Antonio Santibanez</h3>
-						<span class="position mb-2">Chef Cook</span>
-						<div class="faded">
-							<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-							<ul class="ftco-social d-flex">
-								<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 		</div>
 	</div>
 </section>
 
-<section class="ftco-section ftco-wrap-about ftco-no-pb ftco-no-pt">
+<!-- <section class="ftco-section ftco-wrap-about ftco-no-pb ftco-no-pt">
 	<div class="container">
 		<div class="row no-gutters">
 			<div class="col-sm-4 p-4 p-md-5 d-flex align-items-center justify-content-center bg-primary">
@@ -178,6 +161,6 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 
 <?php include 'includes/footer.php'; ?>

@@ -1,7 +1,7 @@
 
 <?php include 'includes/header.php'; ?>
 
-<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_5.jpg');" data-stellar-background-ratio="0.5">
+<section class="hero-wrap hero-wrap-2" style="background-image: url('images/imgbg2.jpg');" data-stellar-background-ratio="0.5">
 	<div class="overlay"></div>
 	<div class="container">
 		<div class="row no-gutters slider-text align-items-end justify-content-center">
@@ -22,24 +22,20 @@
 			<div class="w-100"></div>
 			<div class="col-md-3 d-flex">
 				<div class="dbox">
-					<p><span>Address:</span> Mall Road, Shimla, Himachal Pradesh 171001</p>
+					<p><span>Address:</span> 137 Auchinairn Rd, Bishopbriggs, Glasgow G64 1NF, United Kingdom </p>
 				</div>
 			</div>
 			<div class="col-md-3 d-flex">
 				<div class="dbox">
-					<p><span>Phone:</span> <a href="tel:+919876543210">+91 98765 43210</a></p>
+					<p><span>Phone:</span> <a href="tel:+44 141 280 0585">+44 141 280 0585</a></p>
 				</div>
 			</div>
 			<div class="col-md-3 d-flex">
 				<div class="dbox">
-					<p><span>Email:</span> <a href="mailto:info@mallroadhouse.com">info@mallroadhouse.com</a></p>
+					<p><span>Email:</span> <a href="mailto:info@mallroadhouse.co.uk">info@mallroadhouse.co.uk</a></p>
 				</div>
 			</div>
-			<div class="col-md-3 d-flex">
-				<div class="dbox">
-					<p><span>Hours:</span> Mon-Sun: 11:00 AM - 11:00 PM</p>
-				</div>
-			</div>
+			
 		</div>
 	</div>
 </section>
@@ -68,7 +64,7 @@
 				</form>
 			</div>
 			<div class="col-md-6 d-flex align-items-stretch">
-				<div id="map"></div>
+				<div id="https://g.co/kgs/zMsKEXT"></div>
 			</div>
 		</div>
 	</div>

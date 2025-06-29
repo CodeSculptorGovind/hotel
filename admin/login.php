@@ -16,7 +16,7 @@ if ($_POST) {
     // Simple authentication (you should use database and hashed passwords in production)
     if ($username === 'admin' && $password === 'admin123') {
         $_SESSION['admin_logged_in'] = true;
-        header('Location: index.html');
+        header('Location: index.php');
         exit();
     } else {
         $error = 'Invalid username or password';
@@ -83,9 +83,7 @@ if ($_POST) {
                 <button type="submit" class="btn btn-primary w-100">Login</button>
             </form>
             
-            <div class="mt-3 text-center">
-                <small class="text-muted">Default: admin / admin123</small>
-            </div>
+           
         </div>
     </div>
 

@@ -6,14 +6,19 @@
 		<div class="row justify-content-center mb-5 pb-2">
 			<div class="col-md-7 text-center heading-section ftco-animate">
 				<span class="subheading">About Mall Road House</span>
-				<h2 class="mb-4">Our Story</h2>
+			
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-6 mb-4">
 				<div class="about-content">
 					<h4>Exceptional Dining Experience</h4>
-					<p>Located in the heart of the city, Mall Road House has been serving exquisite cuisine and providing memorable dining experiences for over a decade. Our commitment to quality ingredients, exceptional service, and warm hospitality sets us apart.</p>
+					<p>Welcome to Mallroad House
+Where heritage meets hospitality, and every dish tells a story.
+
+At Mallroad House, our story is built on decades of dedication to hospitality and culinary artistry—crafted by a team whose journey spans five-star hotels, global kitchens, and a shared passion for creating memorable dining experiences.
+
+</p>
 
 					<h4 class="mt-4">Our Services</h4>
 					<div class="row">
@@ -42,7 +47,7 @@
 							<span class="fa fa-map-marker"></span>
 						</div>
 						<div class="text pl-3">
-							<p class="text-white"><span>Address:</span> Mall Road, Main Market, City Center</p>
+							<p class="text-white"><span>Address:</span> 137 Auchinairn Rd, Bishopbriggs, Glasgow G64 1NF, United Kingdom</p>
 						</div>
 					</div>
 					<div class="dbox w-100 d-flex align-items-center mb-3">
@@ -50,7 +55,7 @@
 							<span class="fa fa-phone"></span>
 						</div>
 						<div class="text pl-3">
-							<p class="text-white"><span>Phone:</span> <a href="tel://1234567920" class="text-white">+ 1235 2355 98</a></p>
+							<p class="text-white"><span>Phone:</span> <a href="tel://+44 141 280 0585" class="text-white">+44 141 280 0585</a></p>
 						</div>
 					</div>
 					<div class="dbox w-100 d-flex align-items-center mb-3">
@@ -58,14 +63,14 @@
 							<span class="fa fa-paper-plane"></span>
 						</div>
 						<div class="text pl-3">
-							<p class="text-white"><span>Email:</span> <a href="mailto:info@mallroadhouse.com" class="text-white">info@mallroadhouse.com</a></p>
+							<p class="text-white"><span>Email:</span> <a href="mailto:info@mallroadhouse.com" class="text-white">info@mallroadhouse.co.uk</a></p>
 						</div>
 					</div>
 					<div class="contact-hours mt-4 bg-light p-3 rounded">
-						<h6>Opening Hours</h6>
-						<p class="mb-1"><strong>Monday - Thursday:</strong> 11:00 AM - 10:00 PM</p>
-						<p class="mb-1"><strong>Friday - Saturday:</strong> 11:00 AM - 11:00 PM</p>
-						<p class="mb-0"><strong>Sunday:</strong> 12:00 PM - 9:00 PM</p>
+						<h2>Opening Hours</h2>
+						<p class="mb-1"><strong>Bar Timing</strong> 11:00 - 23:00 </p>
+						<p class="mb-1"><strong>Restaurant Timing</strong> 12:00 - 14:30 || 16:00 - 22:00 </p>
+						
 					</div>
 				</div>
 			</div>

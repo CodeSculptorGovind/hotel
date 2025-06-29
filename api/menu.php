@@ -124,11 +124,17 @@ function createMenuItem($data, $db) {
     $query = "INSERT INTO menu_items (name, description, price, category_id, image_url, is_available) 
               VALUES (:name, :description, :price, :category_id, :image_url, :is_available)";
 
+    $arrayCategories = ['breakfast', 'lunch', 'dinner', 'desserts', 'wine'];
     $stmt = $db->prepare($query);
     $stmt->bindParam(':name', $data['name']);
     $stmt->bindParam(':description', $data['description']);
     $stmt->bindParam(':price', $data['price']);
-    $stmt->bindParam(':category_id', $data['category_id']);
+    //i want the id of the category
+    
+    $stmt->bindParam(':category_id', $arrayCategories[array_search($data['category'], $arrayCategories)]);
+    if(!isset($data['image_url']) || empty($data['image_url'])) {
+        $data['image_url'] = 'images/default-menu-item.jpg'; // Default image if not provided
+    }
     $stmt->bindParam(':image_url', $data['image_url']);
     $stmt->bindParam(':is_available', $data['is_available']);
 
@@ -138,6 +144,24 @@ function createMenuItem($data, $db) {
         echo json_encode(['success' => false, 'message' => 'Failed to create menu item']);
     }
 }
+// function createMenuItem($data, $db) {
+//     $query = "INSERT INTO menu_items (name, description, price, category_id, image_url, is_available) 
+//               VALUES (:name, :description, :price, :category_id, :image_url, :is_available)";
+
+//     $stmt = $db->prepare($query);
+//     $stmt->bindParam(':name', $data['name']);
+//     $stmt->bindParam(':description', $data['description']);
+//     $stmt->bindParam(':price', $data['price']);
+//     $stmt->bindParam(':category_id', $data['category_id']);
+//     $stmt->bindParam(':image_url', $data['image_url']);
+//     $stmt->bindParam(':is_available', $data['is_available']);
+
+//     if($stmt->execute()) {
+//         echo json_encode(['success' => true, 'message' => 'Menu item created successfully']);
+//     } else {
+//         echo json_encode(['success' => false, 'message' => 'Failed to create menu item']);
+//     }
+// }
 
 function createCombo($data, $db) {
     try {

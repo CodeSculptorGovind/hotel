@@ -2,30 +2,30 @@
 
 <section class="hero-wrap">
 	<div class="home-slider owl-carousel js-fullheight">
-		<div class="slider-item js-fullheight" style="background-image:url(images/bg_1.jpg);">
+		<div class="slider-item js-fullheight" style="background-image:url(images/imgbg1.jpg);">
 			<div class="overlay"></div>
 			<div class="container">
 				<div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
 					<div class="col-md-12 ftco-animate">
 						<div class="text w-100 mt-5 text-center">
 							<span class="subheading">Mall Road House</h2></span>
-							<h1>Fine Dining Since</h1>
-							<span class="subheading-2">1995</span>
+							<h1> Crafted with passion, served with elegance.</h1>
+							<span class="subheading-2"></span>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="slider-item js-fullheight" style="background-image:url(images/bg_2.jpg);">
+		<div class="slider-item js-fullheight" style="background-image:url(images/imgbg2.jpg);">
 			<div class="overlay"></div>
 			<div class="container">
 				<div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
 					<div class="col-md-12 ftco-animate">
 						<div class="text w-100 mt-5 text-center">
 							<span class="subheading">Mall Road House</h2></span>
-							<h1>Exceptional</h1>
-							<span class="subheading-2 sub">Cuisine</span>
+							<h1>Crafted with passion, served with elegance.</h1>
+							<span class="subheading-2 sub"> </span>
 						</div>
 					</div>
 				</div>
@@ -35,8 +35,8 @@
 </section>
 
 <section class="ftco-section ftco-wrap-about ftco-no-pb ftco-no-pt">
-	<div class="container">
-		<div class="row no-gutters">
+	<div class="col-md-12 text-center">
+		<div class="row no-gutters" >
 			<div class="col-sm-4 p-4 p-md-5 d-flex align-items-center justify-content-center bg-primary">
 				<form id="quickReservationForm" class="appointment-form">
 					<h3 class="mb-3">Book your Table</h3>
@@ -100,7 +100,7 @@
 					</div>
 				</form>
 			</div>
-			<div class="col-sm-8 wrap-about py-5 ftco-animate img" style="background-image: url(images/about.jpg);">
+		<!--	<div class="col-sm-8 wrap-about py-5 ftco-animate img" style="background-image: url(images/about.jpg);">
 				<div class="row pb-5 pb-md-0">
 					<div class="col-md-12 col-lg-7">
 						<div class="heading-section mt-5 mb-4">
@@ -114,24 +114,28 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </section>
 
-<section class="ftco-section ftco-intro" style="background-image: url(images/bg_3.jpg);">
+<section class="ftco-section ftco-intro" style="background-image: url(images/imgbg2.jpg);">
 	<div class="overlay"></div>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 text-center">
-				<span>Now Booking</span>
-				<h2>Private Dinners &amp; Happy Hours</h2>
+				<span>Now Available</span>
+				<h2> Delivery &amp; Takeaway</h2>
+				<div class="col-md-12 text-center">
+		<a href="order.php" class="btn btn-white btn-outline-white">Order Now</a>
+			</div>
+	
 			</div>
 		</div>
 	</div>
 </section>
 
-<section class="ftco-section">
+<!-- <section class="ftco-section">
 	<div class="container">
 		<div class="row justify-content-center mb-5 pb-2">
 			<div class="col-md-7 text-center heading-section ftco-animate">
@@ -143,9 +147,9 @@
 			<!-- Menu items will be loaded here dynamically -->
 		</div>
 	</div>
-</section>
+</section> 
 
-<section class="ftco-section testimony-section" style="background-image: url(images/bg_5.jpg);">
+<!-- <section class="ftco-section testimony-section" style="background-image: url(images/bg_5.jpg);">
 	<div class="overlay"></div>
 	<div class="container">
 		<div class="row justify-content-center mb-3 pb-2">
@@ -357,7 +361,7 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 
 <section class="ftco-section ftco-no-pt ftco-no-pb ftco-intro bg-primary">
 	<div class="container py-5">
