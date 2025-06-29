@@ -40,7 +40,12 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#" onclick="showMenu()">
-                                <i class="fas fa-utensils"></i> Menu Management
+                                <i class="fas fa-utensils"></i> Dine-in Menu
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showTakeawayMenu()">
+                                <i class="fas fa-shopping-bag"></i> Takeaway Menu
                             </a>
                         </li>
                         <li class="nav-item">

@@ -421,12 +421,238 @@
     border-bottom: none;
 }
 
+/* Enhanced Restaurant Theme Styles */
+.menu-page-title {
+    font-family: 'Georgia', serif !important;
+    font-size: 3.5rem !important;
+    font-weight: bold !important;
+    color: #fff !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5) !important;
+    letter-spacing: 1px;
+}
+
+.menu-page-subtitle {
+    font-size: 1.2rem;
+    color: #f8f9fa;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+/* Restaurant Brand Colors - Inspired by logo */
+:root {
+    --primary-brown: #8B4513;
+    --secondary-brown: #D2691E;
+    --light-brown: #F4A460;
+    --dark-brown: #654321;
+    --cream: #FDF5E6;
+    --gold: #DAA520;
+}
+
+/* Enhanced Navigation */
+.navbar-brand {
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: var(--primary-brown) !important;
+}
+
+.navbar-nav .nav-link {
+    font-family: 'Arial', sans-serif;
+    font-weight: 600;
+    color: var(--dark-brown) !important;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--primary-brown) !important;
+    transform: translateY(-2px);
+}
+
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(135deg, var(--primary-brown), var(--secondary-brown));
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 80%;
+}
+
+/* Enhanced Button Styles */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-brown), var(--secondary-brown));
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 12px 30px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--secondary-brown), var(--light-brown));
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+}
+
+.btn-white {
+    background: #fff;
+    color: var(--primary-brown);
+    border: 2px solid var(--primary-brown);
+    font-weight: 600;
+    padding: 12px 30px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.btn-white:hover {
+    background: var(--primary-brown);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(139, 69, 19, 0.3);
+}
+
+/* Enhanced Heading Styles */
+.heading-section h2 {
+    font-family: 'Georgia', serif;
+    color: var(--dark-brown);
+    font-weight: bold;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.heading-section h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(135deg, var(--primary-brown), var(--secondary-brown));
+    margin: 20px auto;
+    border-radius: 2px;
+}
+
+.subheading {
+    color: var(--secondary-brown);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 14px;
+}
+
+/* Enhanced Card Styles */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.card-header {
+    background: linear-gradient(135deg, var(--cream), #fff);
+    border-bottom: 2px solid var(--primary-brown);
+    font-weight: 600;
+    color: var(--dark-brown);
+}
+
+/* Enhanced Menu Item Styles */
+.menus {
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.menus:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(139, 69, 19, 0.15);
+    border-color: var(--primary-brown);
+}
+
+.price {
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    color: var(--primary-brown);
+    font-size: 1.2rem;
+}
+
+/* Enhanced Form Styles */
+.form-control {
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary-brown);
+    box-shadow: 0 0 15px rgba(139, 69, 19, 0.2);
+    outline: none;
+}
+
+/* Enhanced Footer */
+.footer {
+    background: linear-gradient(135deg, var(--dark-brown), var(--primary-brown));
+    color: #fff;
+}
+
+.footer h2 {
+    color: var(--cream);
+    font-family: 'Georgia', serif;
+}
+
+.footer .ftco-footer-widget h2::after {
+    background: var(--secondary-brown);
+}
+
+/* Restaurant Ambiance Enhancements */
+.ftco-section {
+    position: relative;
+}
+
+.ftco-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* Text Enhancements */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Georgia', serif;
+    color: var(--dark-brown);
+}
+
+p {
+    line-height: 1.8;
+    color: #666;
+}
+
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
     /* Hero section mobile adjustments */
     .hero-wrap .slider-text h1 {
         font-size: 2.5rem !important;
         line-height: 1.2;
+    }
+
+    .menu-page-title {
+        font-size: 2.5rem !important;
     }
 
     .hero-wrap .slider-text .subheading {

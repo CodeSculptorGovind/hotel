@@ -607,3 +607,340 @@ function showTakeaway() {
         </div>
     `;
 }
+
+function showTakeawayMenu() {
+    const content = document.getElementById('content');
+    content.innerHTML = `
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Takeaway Menu Management</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <button class="btn btn-primary" onclick="showAddCategoryModal()">
+                    <i class="fas fa-plus"></i> Add Category
+                </button>
+                <button class="btn btn-success ml-2" onclick="showAddItemModal()">
+                    <i class="fas fa-plus"></i> Add Menu Item
+                </button>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Categories</h5>
+                    </div>
+                    <div class="card-body" id="categoriesList">
+                        <!-- Categories will be loaded here -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Menu Items</h5>
+                        <select class="form-control ml-auto" style="width: 200px;" id="categoryFilter" onchange="filterMenuItems()">
+                            <option value="">All Categories</option>
+                        </select>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Code</th>
+                                        <th>Name</th>
+                                        <th>Category</th>
+                                        <th>Price</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="menuItemsList">
+                                    <!-- Menu items will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Add Category Modal -->
+        <div class="modal fade" id="addCategoryModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add New Category</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="categoryForm">
+                            <div class="mb-3">
+                                <label class="form-label">Category Name</label>
+                                <input type="text" class="form-control" id="categoryName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Display Order</label>
+                                <input type="number" class="form-control" id="categoryOrder" value="0">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" onclick="saveCategory()">Save Category</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Add Menu Item Modal -->
+        <div class="modal fade" id="addItemModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add New Menu Item</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="itemForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Item Code</label>
+                                        <input type="text" class="form-control" id="itemCode" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Item Name</label>
+                                        <input type="text" class="form-control" id="itemName" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <textarea class="form-control" id="itemDescription" rows="3"></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Category</label>
+                                        <select class="form-control" id="itemCategory" required>
+                                            <option value="">Select Category</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Price (£)</label>
+                                        <input type="number" step="0.01" class="form-control" id="itemPrice" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Preparation Time (minutes)</label>
+                                        <input type="number" class="form-control" id="itemPrepTime" value="15">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Display Order</label>
+                                        <input type="number" class="form-control" id="itemOrder" value="0">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Allergens (comma separated)</label>
+                                <input type="text" class="form-control" id="itemAllergens" placeholder="e.g., nuts, dairy, gluten">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" onclick="saveMenuItem()">Save Item</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    loadTakeawayMenuData();
+}
+
+let takeawayCategories = [];
+let takeawayMenuItems = [];
+
+async function loadTakeawayMenuData() {
+    try {
+        const response = await fetch('../api/takeaway_menu.php?action=categories');
+        const data = await response.json();
+        
+        if (data.success) {
+            takeawayCategories = data.categories;
+            takeawayMenuItems = data.categories.flatMap(cat => 
+                cat.items.map(item => ({...item, category_name: cat.name}))
+            );
+            
+            displayTakeawayCategories();
+            displayTakeawayMenuItems();
+            populateCategorySelects();
+        }
+    } catch (error) {
+        console.error('Error loading takeaway menu:', error);
+    }
+}
+
+function displayTakeawayCategories() {
+    const categoriesList = document.getElementById('categoriesList');
+    categoriesList.innerHTML = takeawayCategories.map(cat => `
+        <div class="d-flex justify-content-between align-items-center mb-2 p-2 border rounded">
+            <span>${cat.name} (${cat.items.length} items)</span>
+            <div>
+                <button class="btn btn-sm btn-outline-primary" onclick="editCategory(${cat.id})">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-danger" onclick="deleteCategory(${cat.id})">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function displayTakeawayMenuItems() {
+    const menuItemsList = document.getElementById('menuItemsList');
+    const categoryFilter = document.getElementById('categoryFilter').value;
+    
+    let filteredItems = takeawayMenuItems;
+    if (categoryFilter) {
+        filteredItems = takeawayMenuItems.filter(item => item.category_id == categoryFilter);
+    }
+    
+    menuItemsList.innerHTML = filteredItems.map(item => `
+        <tr>
+            <td>${item.item_code}</td>
+            <td>${item.name}</td>
+            <td>${item.category_name}</td>
+            <td>£${parseFloat(item.price).toFixed(2)}</td>
+            <td>
+                <span class="badge badge-${item.is_available ? 'success' : 'danger'}">
+                    ${item.is_available ? 'Available' : 'Unavailable'}
+                </span>
+            </td>
+            <td>
+                <button class="btn btn-sm btn-outline-primary" onclick="editMenuItem(${item.id})">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-danger" onclick="deleteMenuItem(${item.id})">
+                    <i class="fas fa-trash"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-${item.is_available ? 'warning' : 'success'}" onclick="toggleItemAvailability(${item.id})">
+                    <i class="fas fa-${item.is_available ? 'eye-slash' : 'eye'}"></i>
+                </button>
+            </td>
+        </tr>
+    `).join('');
+}
+
+function populateCategorySelects() {
+    const categoryFilter = document.getElementById('categoryFilter');
+    const itemCategory = document.getElementById('itemCategory');
+    
+    const categoryOptions = takeawayCategories.map(cat => 
+        `<option value="${cat.id}">${cat.name}</option>`
+    ).join('');
+    
+    categoryFilter.innerHTML = '<option value="">All Categories</option>' + categoryOptions;
+    itemCategory.innerHTML = '<option value="">Select Category</option>' + categoryOptions;
+}
+
+function showAddCategoryModal() {
+    const modal = new bootstrap.Modal(document.getElementById('addCategoryModal'));
+    modal.show();
+}
+
+function showAddItemModal() {
+    const modal = new bootstrap.Modal(document.getElementById('addItemModal'));
+    modal.show();
+}
+
+async function saveCategory() {
+    const name = document.getElementById('categoryName').value;
+    const order = document.getElementById('categoryOrder').value;
+    
+    try {
+        const response = await fetch('../api/takeaway_menu.php?action=category', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, display_order: order })
+        });
+        
+        const data = await response.json();
+        if (data.success) {
+            bootstrap.Modal.getInstance(document.getElementById('addCategoryModal')).hide();
+            loadTakeawayMenuData();
+            document.getElementById('categoryForm').reset();
+        } else {
+            alert('Error: ' + data.message);
+        }
+    } catch (error) {
+        alert('Error saving category');
+    }
+}
+
+async function saveMenuItem() {
+    const itemData = {
+        item_code: document.getElementById('itemCode').value,
+        name: document.getElementById('itemName').value,
+        description: document.getElementById('itemDescription').value,
+        category_id: document.getElementById('itemCategory').value,
+        price: document.getElementById('itemPrice').value,
+        preparation_time: document.getElementById('itemPrepTime').value,
+        display_order: document.getElementById('itemOrder').value,
+        allergens: document.getElementById('itemAllergens').value
+    };
+    
+    try {
+        const response = await fetch('../api/takeaway_menu.php?action=item', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(itemData)
+        });
+        
+        const data = await response.json();
+        if (data.success) {
+            bootstrap.Modal.getInstance(document.getElementById('addItemModal')).hide();
+            loadTakeawayMenuData();
+            document.getElementById('itemForm').reset();
+        } else {
+            alert('Error: ' + data.message);
+        }
+    } catch (error) {
+        alert('Error saving menu item');
+    }
+}
+
+function filterMenuItems() {
+    displayTakeawayMenuItems();
+}
+
+async function deleteMenuItem(itemId) {
+    if (confirm('Are you sure you want to delete this menu item?')) {
+        try {
+            const response = await fetch(`../api/takeaway_menu.php?action=item&id=${itemId}`, {
+                method: 'DELETE'
+            });
+            
+            const data = await response.json();
+            if (data.success) {
+                loadTakeawayMenuData();
+            } else {
+                alert('Error: ' + data.message);
+            }
+        } catch (error) {
+            alert('Error deleting menu item');
+        }
+    }
+}
