@@ -1,0 +1,17 @@
+
+        .sidebar {
+            min-height: 100vh;
+            background: #343a40;
+        }
+        .nav-link {
+            color: #fff;
+        }
+        .nav-link:hover {
+            background: #495057;
+            color: #fff;
+        }
+        .status-pending { color: #ffc107; }
+        .status-approved { color: #28a745; }
+        .status-declined { color: #dc3545; }
+        .status-rescheduled { color: #17a2b8; }
+ 

@@ -35,88 +35,90 @@
 </section>
 
 <section class="ftco-section ftco-wrap-about ftco-no-pb ftco-no-pt">
-	<div class="col-md-12 text-center">
-		<div class="row no-gutters" >
-			<div class="col-sm-4 p-4 p-md-5 d-flex align-items-center justify-content-center bg-primary">
-				<form id="quickReservationForm" class="appointment-form">
-					<h3 class="mb-3">Book your Table</h3>
-					<div class="row">
-						<div class="col-md-12">
-							<div class="form-group">
-								<input type="text" id="quickName" class="form-control" placeholder="Name" required>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="form-group">
-								<input type="email" id="quickEmail" class="form-control" placeholder="Email" required>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="form-group">
-								<input type="text" id="quickPhone" class="form-control" placeholder="Phone" required>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="form-group">
-								<div class="input-wrap">
-									<div class="icon"><span class="fa fa-calendar"></span></div>
-									<input type="text" id="quickDate" class="form-control book_date" placeholder="Check-In" required>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="form-group">
-								<div class="input-wrap">
-									<div class="icon"><span class="fa fa-clock-o"></span></div>
-									<input type="text" id="quickTime" class="form-control book_time" placeholder="Time" required>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="form-group">
-								<div class="form-field">
-									<div class="select-wrap">
-										<div class="icon"><span class="fa fa-chevron-down"></span></div>
-										<select id="quickGuests" class="form-control" required>
-											<option value="">Guest</option>
-											<option value="1">1</option>
-											<option value="2">2</option>
-											<option value="3">3</option>
-											<option value="4">4</option>
-											<option value="5">5</option>
-											<option value="6">6</option>
-											<option value="7">7</option>
-											<option value="8">8</option>
-										</select>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="form-group">
-								<input type="submit" value="Request Reservation" class="btn btn-white py-3 px-4">
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		<!--	<div class="col-sm-8 wrap-about py-5 ftco-animate img" style="background-image: url(images/about.jpg);">
-				<div class="row pb-5 pb-md-0">
-					<div class="col-md-12 col-lg-7">
-						<div class="heading-section mt-5 mb-4">
-							<div class="pl-lg-3 ml-md-5">
-								<span class="subheading">About</span>
-								<h2 class="mb-4">Welcome to Mall Road House</h2>
-							</div>
-						</div>
-						<div class="pl-lg-3 ml-md-5">
-							<p>Experience the finest dining in Shimla at Mall Road House. Located on the iconic Mall Road, we offer exceptional cuisine crafted with fresh, local ingredients. Our skilled chefs combine traditional recipes with modern techniques to create memorable dining experiences. We also provide convenient takeaway and delivery services to selected zip codes, plus table reservations for special occasions.</p>
-						</div>
-					</div>
-				</div>
-			</div> -->
-		</div>
-	</div>
+	<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 heading-section text-center ftco-animate mb-5">
+        <h2 class="mb-4" style="color: #2c3e50; font-size: 2.5rem;">Our Delicious Menu</h2>
+        <p style="color: #7f8c8d; font-size: 1.1rem;">A menu inspired by culture, designed for indulgence.</p>
+      </div>
+    </div>
+
+    <!-- Clickable Menu Cards with better spacing -->
+    <div class="row justify-content-center" style="margin-top: 3rem;">
+      <div class="col-md-6 col-lg-5 mb-4 d-flex">
+        <a href="pdf/Mallroad House Table Menu V2.pdf" target="_blank" style="text-decoration: none; color: inherit; width: 100%;">
+          <div class="card shadow-lg border-0 h-100" style="border-radius: 20px; overflow: hidden; transition: all 0.3s ease;">
+            <div style="background-image: url('images/insta-3.jpg'); height: 280px; background-size: cover; background-position: center;"></div>
+            <div class="card-body text-center d-flex flex-column justify-content-between" style="padding: 2rem;">
+              <div>
+                <h4 class="card-title" style="color: #2c3e50; font-weight: 700; margin-bottom: 1rem;">Dine-In Menu</h4>
+                <p class="card-text" style="color: #7f8c8d; font-size: 1rem; line-height: 1.6;">Perfect for your table-side experience with our full restaurant offerings.</p>
+              </div>
+              <div class="btn btn-lg mt-3" style="
+                background: linear-gradient(135deg, #8B4513, #D2691E);
+                color: white;
+                font-weight: bold;
+                border-radius: 25px;
+                padding: 12px 25px;
+                box-shadow: 0 6px 20px rgba(139, 69, 19, 0.3);
+                border: none;
+                transition: all 0.3s ease;
+              ">
+                <i class="fas fa-utensils me-2"></i>View Table Menu
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-lg-5 mb-4 d-flex">
+        <a href="pdf/Mallroad House Takeaway Menu.pdf" target="_blank" style="text-decoration: none; color: inherit; width: 100%;">
+          <div class="card shadow-lg border-0 h-100" style="border-radius: 20px; overflow: hidden; transition: all 0.3s ease;">
+            <div style="background-image: url('images/dinner-1.jpg'); height: 280px; background-size: cover; background-position: center;"></div>
+            <div class="card-body text-center d-flex flex-column justify-content-between" style="padding: 2rem;">
+              <div>
+                <h4 class="card-title" style="color: #2c3e50; font-weight: 700; margin-bottom: 1rem;">Takeaway Menu</h4>
+                <p class="card-text" style="color: #7f8c8d; font-size: 1rem; line-height: 1.6;">Order your favorites to-go or for convenient delivery service.</p>
+              </div>
+              <div class="btn btn-lg mt-3" style="
+                background: linear-gradient(135deg, #e52b34, #ff4757);
+                color: white;
+                font-weight: bold;
+                border-radius: 25px;
+                padding: 12px 25px;
+                box-shadow: 0 6px 20px rgba(229, 43, 52, 0.3);
+                border: none;
+                transition: all 0.3s ease;
+              ">
+                <i class="fas fa-shopping-bag me-2"></i>View Menu
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Additional Info Section -->
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-8 text-center">
+        <div style="background: linear-gradient(135deg, #f8f9fa, #e9ecef); padding: 2rem; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+          <h5 style="color: #2c3e50; font-weight: 600; margin-bottom: 1rem;">Need Help Choosing?</h5>
+          <p style="color: #7f8c8d; margin-bottom: 1.5rem;">Our friendly staff is ready to help you select the perfect dishes for your dining experience.</p>
+          <a href="contact.php" class="btn" style="
+            background: linear-gradient(135deg, #8B4513, #D2691E);
+            color: white;
+            font-weight: 600;
+            border-radius: 25px;
+            padding: 10px 25px;
+            text-decoration: none;
+            border: none;
+            box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
+          ">
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </div>
 </section>
 
 <section class="ftco-section ftco-intro" style="background-image: url(images/imgbg2.jpg);">
