@@ -8,11 +8,10 @@
   }
 </style>
 <section class="hero-wrap hero-bread" style="background-image: url('images/imgbg1.jpg');">
-    <div class="container">
+    <div class="container" style="top: 150px;">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
-                <p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>Wine & Liquor</span></p>
-                <h1 class="mb-0 bread">Wine & Liquor Collection</h1>
+                   <h1 class="mb-0 bread" style="top: 50%;">Wine & Liquor Collection</h1>
             </div>
         </div>
     </div>
@@ -40,8 +39,8 @@
         margin: 20px;
     ">
         <h3 style="color: #8b0000; margin-bottom: 20px;">🍷 Age Verification Required</h3>
-        <p>You must be 21 years or older to view alcoholic beverages.</p>
-        <p>Are you 21 or older?</p>
+        <p>You must be 18 years or older to view alcoholic beverages.</p>
+        <p>Are you 18 or older?</p>
         <button onclick="confirmAge(true)" style="
             background: #8b0000;
             color: white;
@@ -52,7 +51,7 @@
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-        ">Yes, I'm 21+</button>
+        ">Yes, I'm 18+</button>
         <button onclick="confirmAge(false)" style="
             background: #6c757d;
             color: white;
@@ -63,7 +62,7 @@
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-        ">No, I'm under 21</button>
+        ">No, I'm under 18</button>
     </div>
 </div>
 
@@ -74,7 +73,7 @@
                 <h2 class="mb-4">Wine & Liquor Collection</h2>
                 <p>Discover our premium selection of wines, spirits, and cocktails</p>
                 <div class="alert alert-warning" role="alert">
-                    ⚠️ Must be 21+ to purchase alcoholic beverages. Please drink responsibly.
+                    ⚠️ Must be 18+ to purchase alcoholic beverages. Please drink responsibly.
                 </div>
             </div>
         </div>
@@ -261,14 +260,14 @@ function renderWineItems(items) {
                 <div class="text">
                     <div class="d-flex">
                         <div class="one-half">
-                            <h3>${item.name} <span class="badge badge-danger">21+</span></h3>
+                            <h3>${item.name} <span class="badge badge-danger">18+</span></h3>
                         </div>
                         <div class="one-forth">
                             <span class="price">£${parseFloat(item.price).toFixed(2)}</span>
                         </div>
                     </div>
                     <p>${item.description || 'Premium quality beverage'}</p>
-                    <small class="text-muted">Served chilled | 21+ only</small>
+                    <small class="text-muted">Served chilled | 18+ only</small>
                     <div class="order-controls mt-3">
                         <div class="quantity-controls d-inline-flex align-items-center mr-3" id="wine-qty-controls-${item.id}" style="background: #8b0000; border-radius: 8px; display: none;">
                             <button class="btn btn-sm text-white" onclick="decreaseWineQuantity(${item.id})" style="border: none; background: transparent;">-</button>

@@ -32,7 +32,7 @@
     </div>
 
     <!-- Dynamic Menu Items -->
-    <div class="row" id="all-menu" style="margin-top: 2rem;"></div>
+    <div class="row" id="all-menu" style="margin-top: 2rem; padding-left: 90px; padding-right: 90px;"></div>
   </div>
 </section>
 
@@ -111,12 +111,12 @@
             position: relative;
           ">
             ${item.is_popular ? '<span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2">Popular</span>' : ''}
-            ${item.allergens ? '<span class="badge bg-danger position-absolute bottom-0 start-0 m-2"><i class="fas fa-exclamation-triangle"></i></span>' : ''}
+            ${item.allergens ? '<span class="badge bg-danger position-absolute bottom-0 start-0 m-2"><i class="fas fa-exclamation-triangle" style="color: white;"></i></span>' : ''}
           </div>
           <div class="card-body d-flex flex-column">
             <div class="d-flex justify-content-between align-items-start mb-2">
               <h6 class="card-title mb-0">${item.name}</h6>
-              <span class="badge bg-primary">${item.item_code || ''}</span>
+              <span class="badge" style="color: white; background-color:rgb(43, 229, 139);">${item.item_code || ''}</span>
             </div>
             <small class="text-muted mb-2">${item.category_name}</small>
             <p class="card-text text-muted small mb-3">${item.description || 'Delicious item from our kitchen'}</p>

@@ -34,7 +34,9 @@
 	</div>
 </section>
 
-<section class="ftco-section ftco-wrap-about ftco-no-pb ftco-no-pt">
+<section class="ftco-section ftco-wrap-about ftco-no-pb ftco-no-pt" style="
+    padding-top: 30px;
+">
 	<div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8 heading-section text-center ftco-animate mb-5">

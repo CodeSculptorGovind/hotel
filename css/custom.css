@@ -537,13 +537,14 @@
     font-family: 'Georgia', serif;
     font-weight: bold;
     font-size: 1.8rem;
-    color: var(--primary-brown) !important;
+    color: var(--cream) !important;
 }
 
 .navbar-nav .nav-link {
-    font-family: 'Arial', sans-serif;
+    font-family: "Roboto", Arial, sans-serif;
     font-weight: 600;
-    color: var(--dark-brown) !important;
+    color: var(--cream) !important;
+    /* color: var(--dark-brown) !important; */
     transition: all 0.3s ease;
     position: relative;
 }

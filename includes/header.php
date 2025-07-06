@@ -42,28 +42,29 @@
 			</div>
 		</div>
 	</div>
-	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light sticky-top" id="ftco-navbar">
-		<div class="container">
-			<a class="navbar-brand" href="index.php">
-				<img src="attached_assets/Mallroad House Logo_1749898516085.png" alt="Mall Road House" style="height: 40px; width: auto;">
-			</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        	<span class="navbar-toggler-icon"></span>
-	      	</button>
-			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav ml-auto">
-						<li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
-						<li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
-						<li class="nav-item"><a href="chef.php" class="nav-link">Our Team</a></li>
-						<li class="nav-item"><a href="menu.php" class="nav-link">Menu</a></li>
-						<li class="nav-item"><a href="order.php" class="nav-link"><strong>🛒 Order Online</strong></a></li>
-						<li class="nav-item"><a href="wine.php" class="nav-link">🍷 Wine</a></li>
-						<li class="nav-item"><a href="reservation.php" class="nav-link">Reservation</a></li>
-						<li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
-					</ul>
-			</div>
-		</div>
-	</nav>
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light sticky-top" id="ftco-navbar" style="background-color: rgba(30, 30, 30, 0.85);">
+    <div class="container">
+        <a class="navbar-brand" href="index.php">
+            <img src="attached_assets/Mallroad House Logo_1749898516085.png" alt="Mall Road House" style="height: 40px; width: auto;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active"><a href="index.php" class="nav-link" style="color: #f0eada;">Home</a></li>
+                <li class="nav-item"><a href="about.php" class="nav-link" style="color: #f0eada;">About</a></li>
+                <li class="nav-item"><a href="chef.php" class="nav-link" style="color: #f0eada;">Our Team</a></li>
+                <li class="nav-item"><a href="menu.php" class="nav-link" style="color: #f0eada;">Menu</a></li>
+                <!-- <li class="nav-item"><a href="order.php" class="nav-link" style="color: #d4af37;"><strong>🛒 Order Online</strong></a></li> -->
+                <!-- <li class="nav-item"><a href="wine.php" class="nav-link" style="color: #d4af37;">🍷 Wine</a></li> -->
+                <li class="nav-item"><a href="reservation.php" class="nav-link" style="color: #f0eada;">Reservation</a></li>
+                <li class="nav-item"><a href="contact.php" class="nav-link" style="color: #f0eada;">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 	<!-- END nav -->
 </body>
 </html>
